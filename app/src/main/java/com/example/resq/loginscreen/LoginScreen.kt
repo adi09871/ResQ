@@ -9,6 +9,7 @@ fun loginscreen(){
     Column (){
 
 
-        Text(text = "ResQ")
+        Text(text = "ResQ", modifier = Modifier.fillMaxSize(),
+            fontSize = 16.sp)
     }
 }
