@@ -11,14 +11,14 @@ import androidx.compose.ui.graphics.Color
 
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-
+@Preview
 @Composable
 fun loginscreen(){
     Column (modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
 
 
-        Text(text = "ResQ", modifier = Modifier.fillMaxSize(),
-            fontSize = 16.sp)
-    }
-}
+        Text(text = "ResQ", modifier = Modifier,
+            fontSize = 16.sp , color = Color.White
+        )
+    }}
