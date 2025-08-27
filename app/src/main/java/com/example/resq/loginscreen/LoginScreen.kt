@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun loginscreen(){
-    Column (){
+    Column (modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
 
 
         Text(text = "ResQ", modifier = Modifier.fillMaxSize(),
