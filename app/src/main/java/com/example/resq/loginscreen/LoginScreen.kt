@@ -81,14 +81,13 @@ fun Loginscreen() {
                 horizontalAlignment = Alignment.Start
             ) {
 
-            ) {
-            Text(
-                text = "Sign In",
-                modifier = Modifier.fillMaxSize(),
-                fontSize = 20.sp,
-                fontFamily = FontFamily.SansSerif,
-                textAlign = TextAlign.Center
-            )
+                Text(
+                    text = "Sign In",
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
