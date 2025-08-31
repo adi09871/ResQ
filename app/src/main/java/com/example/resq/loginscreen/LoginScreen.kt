@@ -1,5 +1,6 @@
 package com.example.resq.loginscreen
 
+import android.R.attr.text
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 
@@ -10,11 +11,15 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,7 +32,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.resq.R
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import com.example.resq.ui.theme.pink1
+
 
 @Preview
 @Composable
@@ -60,7 +69,7 @@ fun Loginscreen() {
         )
 
         Spacer(modifier = Modifier.height(10.dp))
-       // Box h ye login wala
+        // Box h ye login wala
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
@@ -76,14 +85,26 @@ fun Loginscreen() {
                 modifier = Modifier.fillMaxSize(),
                 fontSize = 20.sp,
                 fontFamily = FontFamily.SansSerif,
-               textAlign = TextAlign.Center        )
+                textAlign = TextAlign.Center
+            )
 
-Text(text = "Email",
-    modifier = Modifier.padding(top = 20.dp,)
+            Text(
+                text = "Email",
+                modifier = Modifier
+                    .padding(top = 35.dp)
+                    .offset(x = 30.dp),
+                fontWeight = FontWeight.Bold
 
 
-)
+            )
+            var text by remember { mutableStateOf("") }
+            OutlinedTextField(
 
+                value = text, onValueChange = { text = it },
+                label = { Text("Email") },
+                modifier = Modifier
+                    .padding(top = 30.dp, start = 25.dp, end = 30.dp)
+            )
         }
 
     }
