@@ -88,13 +88,32 @@ fun Loginscreen() {
                 textAlign = TextAlign.Center
             )
 
-            Text(
-                text = "Email",
-                modifier = Modifier
-                    .padding(top = 35.dp)
-                    .offset(x = 30.dp),
-                fontWeight = FontWeight.Bold
+                Spacer(modifier = Modifier.height(20.dp))
 
+                // Email Label
+                Text(
+                    text = "Email",
+                    fontWeight = FontWeight.Bold
+                )
+
+                var email by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    placeholder = { Text("Enter your email", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Password Label
+                Text(
+                    text = "Password",
+                    fontWeight = FontWeight.Bold
+                )
 
                 var password by remember { mutableStateOf("") }
                 OutlinedTextField(
