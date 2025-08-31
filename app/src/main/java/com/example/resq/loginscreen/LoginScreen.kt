@@ -96,16 +96,17 @@ fun Loginscreen() {
                 fontWeight = FontWeight.Bold
 
 
-            )
-            var text by remember { mutableStateOf("") }
-            OutlinedTextField(
-
-                value = text, onValueChange = { text = it },
-                label = { Text("Email") },
-                modifier = Modifier
-                    .padding(top = 30.dp, start = 25.dp, end = 30.dp)
-            )
+                var password by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    placeholder = { Text("Enter your password", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+            }
         }
-
     }
 }
