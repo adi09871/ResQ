@@ -73,11 +73,13 @@ fun Loginscreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .height(250.dp)
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(12.dp)
-                ),
+                .background(Color.White, shape = RoundedCornerShape(12.dp))
+                .padding(16.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.Start
+            ) {
 
             ) {
             Text(
