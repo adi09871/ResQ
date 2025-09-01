@@ -125,7 +125,7 @@ fun Loginscreen() {
                 Button(
                     onClick = {},
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RectangleShape,
+                    shape = RoundedCornerShape (8.dp),
                     colors = ButtonDefaults.buttonColors(
                         contentColor = Color.White, containerColor = Color(0xFFE50914)
                     )
