@@ -123,6 +123,17 @@ fun Loginscreen() {
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
+
+                Button(
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RectangleShape,
+                    colors = ButtonDefaults.buttonColors(
+                        contentColor = Color.White, containerColor = Color(0xFFE50914)
+                    )
+                ) {
+                    Text(text = "Login")
+                }
             }
         }
     }
