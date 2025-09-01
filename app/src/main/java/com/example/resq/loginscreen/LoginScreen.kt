@@ -90,8 +90,7 @@ fun Loginscreen() {
 
                 // Email Label
                 Text(
-                    text = "Email",
-                    fontWeight = FontWeight.Bold
+                    text = "Email", fontWeight = FontWeight.Bold
                 )
 
                 var email by remember { mutableStateOf("") }
