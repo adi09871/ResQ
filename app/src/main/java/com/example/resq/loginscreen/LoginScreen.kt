@@ -134,6 +134,30 @@ fun Loginscreen() {
                 }
             }
         }
+        Spacer(modifier = Modifier.height(10.dp))
+
+
+        Text(text = "Don't have acoount?")
+        Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))
+
+        Button(
+            onClick = {},
+            modifier = Modifier.fillMaxWidth(0.6f),
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White, contentColor = Color.Black,
+            )
+        ) {
+            Image(
+                painter = painterResource(R.drawable.shieldicon),
+                contentDescription = "icon",
+                Modifier.size(16.dp)
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = "Authorized Responder")
+        }
+
+
     }
 }
 
