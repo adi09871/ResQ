@@ -109,8 +109,7 @@ fun Loginscreen() {
 
                 // Password Label
                 Text(
-                    text = "Password",
-                    fontWeight = FontWeight.Bold
+                    text = "Password", fontWeight = FontWeight.Bold
                 )
 
                 var password by remember { mutableStateOf("") }
