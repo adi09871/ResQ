@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,8 +64,7 @@ fun Loginscreen() {
             fontFamily = FontFamily.SansSerif,
         )
         Text(
-            text = "Emergency Medical QR System ",
-            fontWeight = FontWeight.Bold
+            text = "Emergency Medical QR System ", fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -74,8 +76,7 @@ fun Loginscreen() {
                 .padding(16.dp)
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.Start
+                modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start
             ) {
 
                 Text(
@@ -125,7 +126,7 @@ fun Loginscreen() {
                 Button(
                     onClick = {},
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape (8.dp),
+                    shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         contentColor = Color.White, containerColor = Color(0xFFE50914)
                     )
@@ -160,4 +161,5 @@ fun Loginscreen() {
 
     }
 }
+
 
