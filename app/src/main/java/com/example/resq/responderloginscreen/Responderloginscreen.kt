@@ -139,10 +139,10 @@ fun Responderloginscreen() {
                     Text(
                         text = "Responder ID", fontWeight = FontWeight.Bold
                     )
-                    var ReounderID by remember { mutableStateOf("") }
+                    var reounderID by remember { mutableStateOf("") }
                     OutlinedTextField(
-                        value = ReounderID,
-                        onValueChange = { ReounderID = it },
+                        value = reounderID,
+                        onValueChange = { reounderID = it },
                         placeholder = { Text(" Enter your unique responder ID", fontSize = 14.sp) },
                         modifier = Modifier
                             .fillMaxWidth()
