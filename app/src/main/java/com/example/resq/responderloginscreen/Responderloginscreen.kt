@@ -18,6 +18,11 @@ import androidx.compose.ui.tooling.preview.Wallpapers
 @Composable
 fun Responderloginscreen() {
 
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFE9FDF1))
+    ) {
 
         // Top Row (Back button + Title)
         Row(modifier = Modifier.fillMaxWidth()) {
