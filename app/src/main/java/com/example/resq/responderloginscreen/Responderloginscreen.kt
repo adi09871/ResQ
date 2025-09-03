@@ -20,6 +20,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.Wallpapers
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.resq.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = false, showSystemUi = false,
