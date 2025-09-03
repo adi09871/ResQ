@@ -19,7 +19,33 @@ import androidx.compose.ui.tooling.preview.Wallpapers
 fun Responderloginscreen() {
 
 
-    Column(modifier = Modifier.fillMaxSize()) {
+        // Top Row (Back button + Title)
+        Row(modifier = Modifier.fillMaxWidth()) {
+            IconButton(onClick = { }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.backarrow),
+                    contentDescription = "back",
+                    tint = Color.Black,
+                    modifier = Modifier.padding(top = 4.dp, start = 12.dp)
+                )
+            }
+            Text(
+                text = "Back",
+                modifier = Modifier.padding(top = 16.dp),
+                fontSize = 14.sp
+            )
+            Spacer(modifier = Modifier.width(50.dp))
+            Text(
+                text = "ResQ Responder",
+                color = Color(0xFF008C3D),
+                modifier = Modifier
+                    .padding(top = 12.dp)
+                    .align(Alignment.CenterVertically),
+                fontSize = 18.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold
+            )
+        }
 
         // Image below Row
         Column(
