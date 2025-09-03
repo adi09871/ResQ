@@ -98,8 +98,14 @@ fun Responderloginscreen() {
             )
             Text(
                 text = "Emergency Personal only  ", fontWeight = FontWeight.Bold,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally), fontSize = 15.sp
             )
+            Text("(Access Restricted to authorized personal only  )", fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                fontSize = 10.sp,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.height(10.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
