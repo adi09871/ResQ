@@ -165,8 +165,10 @@ fun Responderloginscreen() {
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            contentColor = Color.White, containerColor = Color(0xFFE50914)
-                        )) { }
+                            contentColor = Color.White, containerColor = Color(0xFF008C3D)
+                        )) {
+                        Text("Acess system")
+                    }
 
 
 
