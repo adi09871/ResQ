@@ -21,6 +21,9 @@ fun Responderloginscreen() {
 
     Column(modifier = Modifier.fillMaxSize()) {
 
+        // Image below Row
+        Column(
+            modifier = Modifier.fillMaxWidth()
 
         Row(modifier = Modifier) {
             Text(text = "ResQ Responder", color = Color.White)
