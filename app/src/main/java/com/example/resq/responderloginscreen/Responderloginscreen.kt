@@ -80,9 +80,88 @@ fun Responderloginscreen() {
         Column(
             modifier = Modifier.fillMaxWidth()
 
-        Row(modifier = Modifier) {
-            Text(text = "ResQ Responder", color = Color.White)
-  }
+        ) {
+            Image(
+                painter = painterResource(R.drawable.logo),
+                contentDescription = "App Logo",
+                modifier = Modifier
+                    .size(72.dp)
+                    .align(Alignment.CenterHorizontally),
+                colorFilter = ColorFilter.tint(Color(0xFF008C3D))
+            )
+            Text(
+                text = "ResQ", fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
+                color = Color(0xFF008C3D),
+                fontFamily = FontFamily.SansSerif,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            Text(
+                text = "Emergency Personal only  ", fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .background(
+                        Color.White,
+                        shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
+                    )
+                    .padding(16.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start
+                ) {
+
+                    Text(
+                        text = "Sign In",
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily.SansSerif,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    // Email Label
+                    Text(
+                        text = "Responder ID", fontWeight = FontWeight.Bold
+                    )
+                    var ReounderID by remember { mutableStateOf("") }
+                    OutlinedTextField(
+                        value = ReounderID,
+                        onValueChange = { ReounderID = it },
+                        placeholder = { Text(" Enter your unique responder ID", fontSize = 14.sp) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .defaultMinSize(minHeight = 40.dp),
+                        textStyle = TextStyle(fontSize = 14.sp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // Password Label
+                    Text(
+                        text = "Password", fontWeight = FontWeight.Bold
+                    )
+
+                    var password by remember { mutableStateOf("") }
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        placeholder = { Text("Enter your password", fontSize = 14.sp) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .defaultMinSize(minHeight = 40.dp),
+                        textStyle = TextStyle(fontSize = 14.sp)
+                    )
+                    Button(onClick = {},
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            contentColor = Color.White, containerColor = Color(0xFFE50914)
+                        )) { }
+
 
 
     }
