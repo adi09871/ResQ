@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,6 +17,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,8 +41,8 @@ import androidx.compose.ui.unit.sp
 import com.example.resq.R
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = false, showSystemUi = false,
-    wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE
+@Preview(
+    showBackground = false, showSystemUi = false, wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE
 )
 @Composable
 fun Responderloginscreen() {
@@ -171,6 +176,9 @@ fun Responderloginscreen() {
                     }
 
 
+                }
+            }
+        }
 
     }
 }
