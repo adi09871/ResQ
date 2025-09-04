@@ -68,10 +68,9 @@ fun CreateAccount() {
 
         Box(
             modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .background(Color.White, shape = RoundedCornerShape(12.dp))
-                .padding(16.dp) .align(Alignment.CenterHorizontally)
-        ) {
+                .fillMaxWidth(),
+            contentAlignment = Alignment.Center) {
+
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
