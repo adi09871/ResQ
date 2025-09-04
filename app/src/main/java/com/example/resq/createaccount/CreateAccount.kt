@@ -79,7 +79,7 @@ fun CreateAccount() {
 
                 Text(
                     text = "Create Account",
-                    fontSize = 20.sp,
+                    fontSize = 20.sp, fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
