@@ -87,7 +87,7 @@ fun CreateAccount() {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // Email Label
+                // full name  Label
                 Text(
                     text = "Email", fontWeight = FontWeight.Bold
                 )
