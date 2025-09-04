@@ -120,6 +120,40 @@ fun CreateAccount() {
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // email Label
+                Text(
+                    text = "Email ", fontWeight = FontWeight.Bold
+                )
+
+                var email by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = email   ,
+                    onValueChange = { email  = it },
+                    placeholder = { Text("  Enter your  email", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Password Label
+                Text(
+                    text = "Password", fontWeight = FontWeight.Bold
+                )
+
+                var password by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    placeholder = { Text("Enter your password", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
 
                 Button(
                     onClick = {},
