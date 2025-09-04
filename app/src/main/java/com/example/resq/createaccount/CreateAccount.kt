@@ -112,9 +112,9 @@ fun CreateAccount() {
 
                 var password by remember { mutableStateOf("") }
                 OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    placeholder = { Text("Enter your password", fontSize = 14.sp) },
+                    value =phonenumber,
+                    onValueChange = {phonenumber = it },
+                    placeholder = { Text("Enter your phone number ", fontSize = 14.sp) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 40.dp),
