@@ -107,7 +107,7 @@ fun CreateAccount() {
 
                 // Password Label
                 Text(
-                    text = "Password", fontWeight = FontWeight.Bold
+                    text = "Phone number ", fontWeight = FontWeight.Bold
                 )
 
                 var password by remember { mutableStateOf("") }
