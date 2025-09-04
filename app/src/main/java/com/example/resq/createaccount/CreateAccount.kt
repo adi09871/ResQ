@@ -94,9 +94,9 @@ fun CreateAccount() {
 
                 var email by remember { mutableStateOf("") }
                 OutlinedTextField(
-                    value = email,
-                    onValueChange = { email = it },
-                    placeholder = { Text("Enter your email", fontSize = 14.sp) },
+                    value =fullname,
+                    onValueChange = { fullname = it },
+                    placeholder = { Text("Enter your full name ", fontSize = 14.sp) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 40.dp),
