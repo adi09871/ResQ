@@ -66,4 +66,70 @@ fun CreateAccount() {
         }
 
 
-        }}
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .background(Color.White, shape = RoundedCornerShape(12.dp))
+                .padding(16.dp) .align(Alignment.CenterHorizontally)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+
+                Text(
+                    text = "Sign In",
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                // Email Label
+                Text(
+                    text = "Email", fontWeight = FontWeight.Bold
+                )
+
+                var email by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    placeholder = { Text("Enter your email", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Password Label
+                Text(
+                    text = "Password", fontWeight = FontWeight.Bold
+                )
+
+                var password by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    placeholder = { Text("Enter your password", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+
+                Button(
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        contentColor = Color.White, containerColor = Color(0xFFE50914)
+                    )
+                ) {
+                    Text(text = "Login")
+                }
+            }
+        }
+    }}
