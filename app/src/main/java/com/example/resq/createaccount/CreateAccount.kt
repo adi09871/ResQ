@@ -78,7 +78,7 @@ fun CreateAccount() {
             ) {
 
                 Text(
-                    text = "Sign In",
+                    text = "Create Account",
                     fontSize = 20.sp,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
