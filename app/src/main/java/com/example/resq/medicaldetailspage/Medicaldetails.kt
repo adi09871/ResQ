@@ -132,27 +132,50 @@ fun Medicaldetails() {
                 var bloodgroup by remember { mutableStateOf("") }
                 val bloodgroups = listOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 
-                //  Dropdown Box
-                ExposedDropdownMenuBox(
-                    expanded = expanded,
-                    onExpandedChange = { expanded = !expanded }
-                ) {
-                    OutlinedTextField(
-                        value = bloodgroup,
-                        onValueChange = {},
-                        readOnly = true,
-                        placeholder = { Text("Select Blood Group", fontSize = 14.sp) },
-                        modifier = Modifier .
-                            menuAnchor(type = MenuAnchorType.PrimaryNotEditable, enabled = true)
-                                                .fillMaxWidth()
-                                                .defaultMinSize(minHeight = 40.dp)
-                        ,
-                        textStyle = TextStyle(fontSize = 14.sp),
-                        trailingIcon = {
-                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
-                        },
-                        colors = ExposedDropdownMenuDefaults.textFieldColors()
-                    )
+                var conatct1 by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = conatct1,
+                    onValueChange = { conatct1 = it },
+                    placeholder = { Text("Name and phone number", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // email Label
+                Text(
+                    text = "Emergency Contact 2 ", fontWeight = FontWeight.Bold
+                )
+
+                var email by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = email   ,
+                    onValueChange = { email  = it },
+                    placeholder = { Text("Name and phone number", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // email Label
+                Text(
+                    text = "Medical notes  ", fontWeight = FontWeight.Bold
+                )
+
+                var medicalnotes  by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = medicalnotes    ,
+                    onValueChange = { medicalnotes = it },
+                    placeholder = { Text("Important Medical Condition,medication,etc", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
 
                 Button(
                     onClick = {},
