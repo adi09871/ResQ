@@ -76,6 +76,12 @@ fun Medicaldetails()
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // full name  Label
+            Text(
+                text = "Full name ", fontWeight = FontWeight.Bold
+            )
 
     
 }}}
