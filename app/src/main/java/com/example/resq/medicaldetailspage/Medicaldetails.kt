@@ -83,5 +83,16 @@ fun Medicaldetails()
                 text = "Full name ", fontWeight = FontWeight.Bold
             )
 
-    
-}}}
+            var fullname by remember { mutableStateOf("") }
+            OutlinedTextField(
+                value =fullname,
+                onValueChange = { fullname = it },
+                placeholder = { Text("Enter your full name ", fontSize = 14.sp) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 40.dp),
+                textStyle = TextStyle(fontSize = 14.sp)
+            )
+
+
+}}}}
