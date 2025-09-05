@@ -64,19 +64,21 @@ fun Medicaldetails()
             .fillMaxWidth(),
         contentAlignment = Alignment.Center) {
 
-        Column(
-            modifier = Modifier.fillMaxWidth(0.9f). fillMaxWidth(0.9f)
-                .background(Color.White, shape = RoundedCornerShape(12.dp))
-                .padding(16.dp)
-        ) {
-            Text(
-                text = "Create Account",
-                fontSize = 20.sp, fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(20.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .background(Color.White, shape = RoundedCornerShape(12.dp))
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Create Account",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.SansSerif,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(20.dp))
 
                 // ✍ Full Name Label
                 Text(
