@@ -31,32 +31,33 @@ fun Medicaldetails()
 
     ) {
 
-
-    Row(modifier = Modifier.fillMaxWidth()) {
-        IconButton(onClick = { }) {
-            Icon(
-                painter = painterResource(id = R.drawable.backarrow),
-                contentDescription = "back",
-                tint = Color.Black,
-                modifier = Modifier.padding(top = 4.dp, start = 12.dp)
+        // 🔙 Top Row (Back Button + Title)
+        Row(modifier = Modifier.fillMaxWidth()) {
+            IconButton(onClick = { }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.backarrow),
+                    contentDescription = "back",
+                    tint = Color.Black,
+                    modifier = Modifier.padding(top = 4.dp, start = 12.dp)
+                )
+            }
+            Text(
+                text = "Back",
+                modifier = Modifier.padding(top = 16.dp),
+                fontSize = 14.sp
+            )
+            Spacer(modifier = Modifier.width(50.dp))
+            Text(
+                text = "ResQ Responder",
+                color = Color(0xFFE50914),
+                modifier = Modifier
+                    .padding(top = 12.dp)
+                    .align(Alignment.CenterVertically),
+                fontSize = 18.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold
             )
         }
-        Text(
-            text = "Back",
-            modifier = Modifier.padding(top = 16.dp),
-            fontSize = 14.sp
-        )
-        Spacer(modifier = Modifier.width(50.dp))
-        Text(
-            text = "ResQ Responder",
-            color = Color(0xFFE50914),
-            modifier = Modifier
-                .padding(top = 12.dp)
-                .align(Alignment.CenterVertically),
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Bold
-        )
 
     }
     Box(
