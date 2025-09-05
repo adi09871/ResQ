@@ -28,5 +28,24 @@ fun Medicaldetails()
         .background(color = pink1)
         .padding(bottom = 300.dp),
 
+
+    ) {
+
+
+    Row(modifier = Modifier.fillMaxWidth()) {
+        IconButton(onClick = { }) {
+            Icon(
+                painter = painterResource(id = R.drawable.backarrow),
+                contentDescription = "back",
+                tint = Color.Black,
+                modifier = Modifier.padding(top = 4.dp, start = 12.dp)
+            )
+        }
+        Text(
+            text = "Back",
+            modifier = Modifier.padding(top = 16.dp),
+            fontSize = 14.sp
+        )
+
     
-}
+}}}
