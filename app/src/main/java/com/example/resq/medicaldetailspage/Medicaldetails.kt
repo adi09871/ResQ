@@ -46,6 +46,19 @@ fun Medicaldetails()
             modifier = Modifier.padding(top = 16.dp),
             fontSize = 14.sp
         )
+        Spacer(modifier = Modifier.width(50.dp))
+        Text(
+            text = "ResQ Responder",
+            color = Color(0xFFE50914),
+            modifier = Modifier
+                .padding(top = 12.dp)
+                .align(Alignment.CenterVertically),
+            fontSize = 18.sp,
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Bold
+        )
+
+    }
 
     
 }}}
