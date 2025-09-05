@@ -1,12 +1,14 @@
 package com.example.resq.medicaldetailspage
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +19,8 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MenuAnchorType
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -42,13 +46,11 @@ import com.example.resq.ui.theme.pink1
 @Composable
 fun Medicaldetails() {
 
-{ Column(
-    modifier = Modifier
-        .fillMaxSize()
-        .background(color = pink1)
-        .padding(bottom = 300.dp),
-
-
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = pink1)
+            .padding(bottom = 300.dp)
     ) {
 
         // 🔙 Top Row (Back Button + Title)
@@ -104,7 +106,7 @@ fun Medicaldetails() {
                 // ✍ Full Name Label
                 Text(
                     text = "Full name ",
-                    fontWeight = FontWeight.Bold
+                   fontWeight = FontWeight.Bold
                 )
 
                 var fullname by remember { mutableStateOf("") }
@@ -126,4 +128,49 @@ fun Medicaldetails() {
                     fontWeight = FontWeight.Bold
                 )
 
-}}}}
+                var expanded by remember { mutableStateOf(false) }
+                var bloodgroup by remember { mutableStateOf("") }
+                val bloodgroups = listOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+
+                //  Dropdown Box
+                ExposedDropdownMenuBox(
+                    expanded = expanded,
+                    onExpandedChange = { expanded = !expanded }
+                ) {
+                    OutlinedTextField(
+                        value = bloodgroup,
+                        onValueChange = {},
+                        readOnly = true,
+                        placeholder = { Text("Select Blood Group", fontSize = 14.sp) },
+                        modifier = Modifier .
+                            menuAnchor(type = MenuAnchorType.PrimaryNotEditable, enabled = true)
+                                                .fillMaxWidth()
+                                                .defaultMinSize(minHeight = 40.dp)
+                        ,
+                        textStyle = TextStyle(fontSize = 14.sp),
+                        trailingIcon = {
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                        },
+                        colors = ExposedDropdownMenuDefaults.textFieldColors()
+                    )
+
+                    // Options
+                    ExposedDropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        bloodgroups.forEach { group ->
+                            DropdownMenuItem(
+                                text = { Text(group) },
+                                onClick = {
+                                    bloodgroup = group
+                                    expanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
