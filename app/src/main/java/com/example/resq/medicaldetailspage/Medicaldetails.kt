@@ -69,6 +69,13 @@ fun Medicaldetails()
                 .background(Color.White, shape = RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
+            Text(
+                text = "Create Account",
+                fontSize = 20.sp, fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.SansSerif,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
 
     
 }}}
