@@ -98,5 +98,12 @@ fun Medicaldetails()
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
 
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Blood Group Label
+                Text(
+                    text = "Blood group ",
+                    fontWeight = FontWeight.Bold
+                )
 
 }}}}
