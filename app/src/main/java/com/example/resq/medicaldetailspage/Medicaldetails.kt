@@ -15,12 +15,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,7 +47,7 @@ fun Medicaldetails() {
         modifier = Modifier
             .fillMaxSize()
             .background(color = pink1)
-            .padding(bottom = 300.dp)
+
     ) {
 
         // 🔙 Top Row (Back Button + Title)
@@ -82,37 +78,35 @@ fun Medicaldetails() {
             )
         }
 
-        // 📦 White Card Box
         Box(
             modifier = Modifier
                 .fillMaxWidth(),
             contentAlignment = Alignment.Center) {
 
             Column(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
+                modifier = Modifier.fillMaxWidth(0.9f). fillMaxWidth(0.9f)
                     .background(Color.White, shape = RoundedCornerShape(12.dp))
                     .padding(16.dp)
             ) {
+
                 Text(
-                    text = "Create Account",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = "Emergency Information",
+                    fontSize = 20.sp, fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
+
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // ✍ Full Name Label
+                // full name  Label
                 Text(
-                    text = "Full name ",
-                   fontWeight = FontWeight.Bold
+                    text = "Full name ", fontWeight = FontWeight.Bold
                 )
 
                 var fullname by remember { mutableStateOf("") }
                 OutlinedTextField(
-                    value = fullname,
+                    value =fullname,
                     onValueChange = { fullname = it },
                     placeholder = { Text("Enter your full name ", fontSize = 14.sp) },
                     modifier = Modifier
@@ -123,10 +117,9 @@ fun Medicaldetails() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Blood Group Label
+                // blood group  Label
                 Text(
-                    text = "Blood group ",
-                    fontWeight = FontWeight.Bold
+                    text = "Blood Group ", fontWeight = FontWeight.Bold
                 )
 
                 var blodgroup by remember { mutableStateOf("") }
@@ -158,7 +151,7 @@ fun Medicaldetails() {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Password Label
+                // emrgency contact 1 Label
                 Text(
                     text = "Emergency Contact 1", fontWeight = FontWeight.Bold
                 )
@@ -175,7 +168,7 @@ fun Medicaldetails() {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // email Label
+                // emergency contact 2 Label
                 Text(
                     text = "Emergency Contact 2 ", fontWeight = FontWeight.Bold
                 )
@@ -192,7 +185,7 @@ fun Medicaldetails() {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // email Label
+                // MEDICAL NOTES Label
                 Text(
                     text = "Medical notes  ", fontWeight = FontWeight.Bold
                 )
