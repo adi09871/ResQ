@@ -154,23 +154,16 @@ fun Medicaldetails() {
                         colors = ExposedDropdownMenuDefaults.textFieldColors()
                     )
 
-                    // Options
-                    ExposedDropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false }
-                    ) {
-                        bloodgroups.forEach { group ->
-                            DropdownMenuItem(
-                                text = { Text(group) },
-                                onClick = {
-                                    bloodgroup = group
-                                    expanded = false
-                                }
-                            )
-                        }
-                    }
+                Button(
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        contentColor = Color.White, containerColor = Color(0xFFE50914)
+                    )
+                ) {
+                    Text(text = "Save Medical Information")
                 }
             }
         }
-    }
-}
+    }}
