@@ -59,11 +59,11 @@ fun Medicaldetails()
             )
         }
 
-    }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth(),
-        contentAlignment = Alignment.Center) {
+        // 📦 White Card Box
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
 
             Column(
                 modifier = Modifier
