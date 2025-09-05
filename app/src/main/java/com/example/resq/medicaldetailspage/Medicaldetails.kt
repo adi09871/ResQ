@@ -78,10 +78,11 @@ fun Medicaldetails()
             )
             Spacer(modifier = Modifier.height(20.dp))
 
-            // full name  Label
-            Text(
-                text = "Full name ", fontWeight = FontWeight.Bold
-            )
+                // ✍ Full Name Label
+                Text(
+                    text = "Full name ",
+                    fontWeight = FontWeight.Bold
+                )
 
                 var fullname by remember { mutableStateOf("") }
                 OutlinedTextField(
