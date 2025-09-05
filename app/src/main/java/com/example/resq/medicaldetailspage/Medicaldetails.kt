@@ -128,9 +128,39 @@ fun Medicaldetails() {
                     fontWeight = FontWeight.Bold
                 )
 
-                var expanded by remember { mutableStateOf(false) }
-                var bloodgroup by remember { mutableStateOf("") }
-                val bloodgroups = listOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+                var blodgroup by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = blodgroup,
+                    onValueChange = {blodgroup = it },
+                    placeholder = { Text(" Enter your blood group ", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 30.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+            //allergies label
+                Text(
+                    text = "Allergies ", fontWeight = FontWeight.Bold
+                )
+
+                var allergies by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = allergies  ,
+                    onValueChange = { allergies  = it },
+                    placeholder = { Text(" List any allergies (medical,food,etc.)", fontSize = 14.sp) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 40.dp),
+                    textStyle = TextStyle(fontSize = 14.sp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Password Label
+                Text(
+                    text = "Emergency Contact 1", fontWeight = FontWeight.Bold
+                )
 
                 var conatct1 by remember { mutableStateOf("") }
                 OutlinedTextField(
