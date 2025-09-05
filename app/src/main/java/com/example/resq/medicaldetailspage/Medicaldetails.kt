@@ -59,6 +59,16 @@ fun Medicaldetails()
         )
 
     }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center) {
+
+        Column(
+            modifier = Modifier.fillMaxWidth(0.9f). fillMaxWidth(0.9f)
+                .background(Color.White, shape = RoundedCornerShape(12.dp))
+                .padding(16.dp)
+        ) {
 
     
 }}}
