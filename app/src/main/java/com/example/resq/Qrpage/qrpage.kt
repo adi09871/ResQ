@@ -34,7 +34,9 @@ fun Qrpage() {
             Image(
                 painter = painterResource(R.drawable.logo),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp) .padding(top = 8.dp, start = 6.dp)
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(top = 8.dp, start = 6.dp)
             )
             Text(
                 text = "ResQ ",
