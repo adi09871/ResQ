@@ -47,9 +47,13 @@ fun Qrpage() {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Text("Profile", modifier = Modifier.padding(top = 12.dp, end = 16.dp) .clickable {
-             //yha apr action likhna baaki h
-            }, fontSize = 16.sp)
+            Text(
+                "Profile", modifier = Modifier
+                    .padding(top = 12.dp, end = 16.dp)
+                    .clickable {
+                        //yha apr action likhna baaki h
+                    }, fontSize = 16.sp
+            )
         }
     }
 }
