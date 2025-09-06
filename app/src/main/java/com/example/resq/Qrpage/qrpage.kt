@@ -59,5 +59,27 @@ fun Qrpage() {
                     }, fontSize = 16.sp
             )
         }
+        Spacer(modifier = Modifier.padding(20.dp))
+        Column() {
+            Text(
+                " Your Emergency QR Code ",
+                modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp
+            )
+            Spacer(modifier = Modifier.padding(2.dp))
+            Text(
+                "Ready for emergency situations",
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
+            )
+            Box(modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .background(Color(0xFFE9FDF1)), contentAlignment = Alignment.Center
+            ){
+Text("Emergency Medical QR ", )
+        }
+
+        }
     }
 }
