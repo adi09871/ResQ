@@ -44,7 +44,7 @@ fun Qrpage() {
                 text = "ResQ ",
                 color = Color(0xFF008C3D),
                 modifier = Modifier
-                    .padding(top = 12.dp, ), fontSize = 18.sp,
+                    .padding(top = 12.dp), fontSize = 18.sp,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold
             )
