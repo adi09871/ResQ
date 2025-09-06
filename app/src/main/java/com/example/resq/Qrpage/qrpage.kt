@@ -32,7 +32,7 @@ fun Qrpage() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xFFE9FDF1))
+            .background(color = pink1)
     ) {
         Row {
 
