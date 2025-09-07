@@ -88,7 +88,10 @@ fun Qrpage() {
                     .padding(20.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Emergency Medical QR ")
+                Text("Emergency Medical QR ", fontSize = 15.sp)
+
+                // Yha pr QR code wala image lgana baaki h
+
             }
 
         }
