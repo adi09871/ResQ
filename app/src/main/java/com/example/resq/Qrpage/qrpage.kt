@@ -93,7 +93,7 @@ fun Qrpage() {
                 // Yha pr QR code wala image lgana baaki h
 
             }
-
+1
         }
     }
 }
