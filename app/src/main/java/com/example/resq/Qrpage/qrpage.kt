@@ -74,7 +74,7 @@ fun Qrpage() {
                 fontWeight = FontWeight.Bold,
                 fontSize = 22.sp
             )
-            Spacer(modifier = Modifier.padding(2.dp))
+            Spacer(modifier = Modifier.size(2.dp))
             Text(
                 "Ready for emergency situations",
                 modifier = Modifier.fillMaxWidth(),
