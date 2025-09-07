@@ -80,6 +80,7 @@ fun Qrpage() {
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
             )
+            Spacer(modifier = Modifier.size(15.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
