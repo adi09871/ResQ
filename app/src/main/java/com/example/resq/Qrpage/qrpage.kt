@@ -80,12 +80,15 @@ fun Qrpage() {
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
             )
-            Box(modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .background(Color(0xFFE9FDF1)), contentAlignment = Alignment.Center
-            ){
-Text("Emergency Medical QR ", )
-        }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .background(Color(0xFFE9FDF1))
+                    .padding(20.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Emergency Medical QR ")
+            }
 
         }
     }
