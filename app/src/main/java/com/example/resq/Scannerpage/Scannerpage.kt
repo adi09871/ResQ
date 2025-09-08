@@ -45,6 +45,13 @@ fun Scannerpage() {
             )
             Spacer(modifier = Modifier.weight(1f))
 
+            Text(
+                "Profile", modifier = Modifier
+                    .padding(top = 12.dp, end = 16.dp)
+                    .clickable {
+                        //yha apr action likhna baaki h jo back jaaye login pr woh bhi responder k liye h
+                    }, fontSize = 16.sp
+            )
 
     }
 
