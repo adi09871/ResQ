@@ -43,6 +43,7 @@ fun Scannerpage() {
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold
             )
+            Spacer(modifier = Modifier.weight(1f))
 
 
     }
