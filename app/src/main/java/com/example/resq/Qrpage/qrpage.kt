@@ -92,8 +92,19 @@ fun Qrpage() {
 
                 // Yha pr QR code wala image lgana baaki h
 
+
+                Spacer(modifier = Modifier.size(12.dp))
+
+                // Yha pr QR Image aayega
+                // Image(painter = painterResource(R.drawable.qr), contentDescription = null)
+
+                Spacer(modifier = Modifier.size(12.dp))
+
+                Button(onClick = { /* action */ }) {
+                    Text("Download QR")
+
+                }
+
             }
-1
         }
-    }
-}
+    }}
