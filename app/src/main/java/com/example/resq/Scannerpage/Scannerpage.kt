@@ -2,8 +2,10 @@ package com.example.resq.Scannerpage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,7 +22,8 @@ import androidx.compose.ui.unit.sp
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
-@Composable ()
+@Composable()
+@Preview
 fun Scannerpage() {
     Column(
         modifier = Modifier
@@ -48,17 +51,16 @@ fun Scannerpage() {
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
-                "Profile", modifier = Modifier
+                "exit button ", modifier = Modifier
                     .padding(top = 12.dp, end = 16.dp)
                     .clickable {
                         //yha apr action likhna baaki h jo back jaaye login pr woh bhi responder k liye h
                     }, fontSize = 16.sp
             )
 
+        }
+
+
     }
-
-
-
-
-}}
+}
 
