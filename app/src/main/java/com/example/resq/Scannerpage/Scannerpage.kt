@@ -22,9 +22,11 @@ import com.example.resq.ui.theme.pink1
 
 @Composable ()
 fun Scannerpage() {
-    Column (modifier = Modifier
-        .fillMaxSize()
-        .background(color = pink1)){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFE9FDF1))
+    ) {
 
         Row {
 
