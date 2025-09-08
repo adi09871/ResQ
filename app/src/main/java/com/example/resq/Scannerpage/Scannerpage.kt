@@ -29,6 +29,14 @@ fun Scannerpage() {
                     .size(40.dp)
                     .padding(top = 8.dp, start = 6.dp)
             )
+            Text(
+                text = "ResQ ",
+                color = Color(0xFF008C3D),
+                modifier = Modifier
+                    .padding(top = 12.dp), fontSize = 18.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold
+            )
 
 
     }
