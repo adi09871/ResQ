@@ -59,6 +59,29 @@ fun Scannerpage() {
 
         }
 
+        Box() {
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                label = { Text("Enter the code") },
+                modifier = Modifier
+                    .fillMaxWidth()
+
+                    .padding(16.dp)
+                    .background(Color.White)
+                    .height(56.dp),
+                textStyle = TextStyle(fontSize = 14.sp)
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            "Emergency  Scanner",
+            modifier = Modifier,
+            fontSize = (24.sp),
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily.SansSerif,
+        )
 
     }
 }
