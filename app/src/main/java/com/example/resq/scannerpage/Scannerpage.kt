@@ -89,7 +89,13 @@ fun Scannerpage() {
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.SansSerif,
         )
-
+        Text(
+            "Emergency  Scanner",
+            modifier = Modifier,
+            fontSize = (24.sp),
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            fontFamily
     }
 }
 
