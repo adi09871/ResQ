@@ -95,7 +95,11 @@ fun Scannerpage() {
             fontSize = (24.sp),
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            fontFamily
+            fontFamily = FontFamily.SansSerif,
+
+
+
+            )
     }
 }
 
