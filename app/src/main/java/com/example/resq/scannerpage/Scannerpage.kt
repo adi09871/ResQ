@@ -89,6 +89,7 @@ fun Scannerpage() {
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.SansSerif,
         )
+        Spacer(modifier = Modifier.height(16.dp))
         Text(
             "Emergency  Scanner",
             modifier = Modifier,
