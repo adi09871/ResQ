@@ -11,12 +11,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Loginscreen()
-
-
-
-
-
-            }
+            MyAppNavigation(
+                modifier = Modifier,
+authViewModel = authViewModel
+            )
         }
     }
+}
+
