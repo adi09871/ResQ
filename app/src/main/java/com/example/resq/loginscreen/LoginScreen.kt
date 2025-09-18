@@ -31,18 +31,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.resq.AuthViewModel
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
 
-@Preview
+
 @Composable
-fun Loginscreen() {
+fun Loginscreen(modifier: Modifier.Companion,navController: NavController,authviewmodel: AuthViewModel) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(color = pink1)
             .padding(bottom = 300.dp),
@@ -54,7 +55,7 @@ fun Loginscreen() {
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "App Logo",
-            modifier = Modifier.size(72.dp)
+            modifier = modifier.size(72.dp)
 
         )
         Text(
@@ -67,16 +68,16 @@ fun Loginscreen() {
             text = "Emergency Medical QR System ", fontWeight = FontWeight.Bold
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = modifier.height(10.dp))
         // Box h ye login wala
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth(0.9f)
                 .background(Color.White, shape = RoundedCornerShape(12.dp))
                 .padding(16.dp)
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start
+                modifier = modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start
             ) {
 
                 Text(
@@ -84,10 +85,10 @@ fun Loginscreen() {
                     fontSize = 20.sp,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = modifier.height(20.dp))
 
                 // Email Label
                 Text(
@@ -99,13 +100,13 @@ fun Loginscreen() {
                     value = email,
                     onValueChange = { email = it },
                     placeholder = { Text("Enter your email", fontSize = 14.sp) },
-                    modifier = Modifier
+                    modifier = modifier
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = modifier.height(16.dp))
 
                 // Password Label
                 Text(
@@ -117,7 +118,7 @@ fun Loginscreen() {
                     value = password,
                     onValueChange = { password = it },
                     placeholder = { Text("Enter your password", fontSize = 14.sp) },
-                    modifier = Modifier
+                    modifier = modifier
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
@@ -125,7 +126,7 @@ fun Loginscreen() {
 
                 Button(
                     onClick = {},
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         contentColor = Color.White, containerColor = Color(0xFFE50914)
@@ -135,7 +136,7 @@ fun Loginscreen() {
                 }
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = modifier.height(10.dp))
 
 
         Text(text = "Don't have acoount?")
@@ -143,7 +144,7 @@ fun Loginscreen() {
 
         Button(
             onClick = {},
-            modifier = Modifier.fillMaxWidth(0.6f),
+            modifier = modifier.fillMaxWidth(0.6f),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White, contentColor = Color.Black,
@@ -152,9 +153,9 @@ fun Loginscreen() {
             Image(
                 painter = painterResource(R.drawable.shieldicon),
                 contentDescription = "icon",
-                Modifier.size(16.dp)
+                modifier.size(16.dp)
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = modifier.width(4.dp))
             Text(text = "Authorized Responder")
         }
 

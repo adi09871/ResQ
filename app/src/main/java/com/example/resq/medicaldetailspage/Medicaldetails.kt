@@ -39,7 +39,7 @@ import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
+
 @Composable
 fun Medicaldetails() {
 

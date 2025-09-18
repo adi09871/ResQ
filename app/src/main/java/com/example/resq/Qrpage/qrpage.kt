@@ -28,7 +28,7 @@ import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
 @Composable
-@Preview
+
 fun Qrpage() {
 
     Column(
@@ -90,23 +90,24 @@ fun Qrpage() {
                     .padding(20.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Emergency Medical QR ", fontSize = 15.sp)
+                Column {
+                    Text("Emergency Medical QR ", fontSize = 15.sp)
 
-                // Yha pr QR code wala image lgana baaki h
+                    // Yha pr QR code wala image lgana baaki h
 
 
-                Spacer(modifier = Modifier.size(12.dp))
+                    Spacer(modifier = Modifier.size(12.dp))
 
-                // Yha pr QR Image aayega
-                // Image(painter = painterResource(R.drawable.qr), contentDescription = null)
+                    // Yha pr QR Image aayega
+                    // Image(painter = painterResource(R.drawable.qr), contentDescription = null)
 
-                Spacer(modifier = Modifier.size(12.dp))
+                    Spacer(modifier = Modifier.size(12.dp))
 
-                Button(onClick = { /* action */ }) {
-                    Text("Download QR")
+                    Button(onClick = { /* action */ }) {
+                        Text("Download QR")
 
+                    }
                 }
-
             }
         }
     }}

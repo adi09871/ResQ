@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.example.resq.R
 
 @Composable()
-@Preview
+
 fun Scannerpage() {
     Column(
         modifier = Modifier

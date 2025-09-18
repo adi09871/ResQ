@@ -41,9 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.example.resq.R
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(
-    showBackground = false, showSystemUi = false, wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE
-)
+
 @Composable
 fun Responderloginscreen() {
 

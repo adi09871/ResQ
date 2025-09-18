@@ -38,7 +38,7 @@ import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
 @Composable
-@Preview
+
 fun CreateAccount() {
     Column(
         modifier = Modifier
