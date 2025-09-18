@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.resq.loginscreen.Loginscreen
+import androidx.activity.viewModels
+import androidx.compose.ui.Modifier
+
 
 class MainActivity : ComponentActivity() {
 
