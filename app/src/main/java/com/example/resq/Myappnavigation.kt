@@ -6,6 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.resq.loginscreen.Loginscreen
+import com.example.resq.medicaldetailspage.Medicaldetails
+import com.example.resq.responderloginscreen.Responderloginscreen
 
 @Composable
 fun MyAppNavigation(
