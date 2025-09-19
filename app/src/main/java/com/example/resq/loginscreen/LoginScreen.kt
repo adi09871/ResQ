@@ -41,7 +41,7 @@ import com.example.resq.ui.theme.pink1
 
 
 @Composable
-fun Loginscreen(modifier: Modifier.Companion,navController: NavController,authviewmodel: AuthViewModel) {
+fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
     Column(
         modifier = modifier
             .fillMaxSize()

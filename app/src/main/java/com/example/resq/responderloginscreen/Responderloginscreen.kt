@@ -38,12 +38,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.Wallpapers
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.resq.AuthViewModel
 import com.example.resq.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun Responderloginscreen() {
+fun Responderloginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
 
     Column(
         modifier = Modifier
