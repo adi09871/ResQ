@@ -140,7 +140,8 @@ fun Loginscreen(modifier: Modifier.Companion,navController: NavController,authvi
 
 
         Text(text = "Don't have acoount?")
-        Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))
+        TextButton(onClick ={} ) {
+        Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))}
 
         Button(
             onClick = {},
