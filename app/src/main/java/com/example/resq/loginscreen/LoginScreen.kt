@@ -42,6 +42,15 @@ import com.example.resq.ui.theme.pink1
 
 @Composable
 fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
+    val authState by authviewmodel.authstate.observeAsState()
+
+    LaunchedEffect(authState) {
+        if (authState is Authstate.Autheticated) {
+            navController.navigate("Medicaldetails") {
+                popUpTo("login") { inclusive = true }
+            }
+        }
+    }
     Column(
         modifier = modifier
             .fillMaxSize()
