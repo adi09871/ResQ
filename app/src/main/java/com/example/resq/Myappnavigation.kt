@@ -10,19 +10,19 @@ import com.example.resq.loginscreen.Loginscreen
 @Composable
 fun MyAppNavigation(
     modifier: Modifier = Modifier,
-    authViewModel: AuthViewModel   // 👈 class ka naam wahi likho jo file me hai
+    authViewModel: AuthViewModel
 ) {
     val navController = rememberNavController()
 
     NavHost(
         navController = navController,
-        startDestination = "login"   // 👈 case same rakho
+        startDestination = "login"
     ) {
         composable("login") {
             Loginscreen(
                 modifier = Modifier,
                 navController = navController,
-                authviewmodel = authViewModel   // 👈 yaha bhi same naam
+                authviewmodel = authViewModel
             )
         }
     }
