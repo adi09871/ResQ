@@ -39,7 +39,7 @@ import com.example.resq.ui.theme.pink1
 
 @Composable
 
-fun CreateAccount() {
+fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
