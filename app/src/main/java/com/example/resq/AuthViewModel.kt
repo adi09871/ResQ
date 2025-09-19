@@ -26,12 +26,14 @@ class AuthViewModel : ViewModel() {
     fun login(email : String,password : String){
         if (email.isEmpty() || password.isEmpty()){
             _authstate.value = Authstate.Error("Email or password can't be empty ")
+            return
         }
 
         _authstate.value = Authstate.Loading
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener { task ->
-                if ( task.isSuccessful){
+                if ( task.isSuccessful){_authstate.value = Authstate.Autheticated
+
             }else {
                     _authstate.value = Authstate.Error(task.exception?.message ?: "Something Went Wrong")
                 }

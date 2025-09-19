@@ -20,7 +20,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
+import com.example.resq.Authstate
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
@@ -136,11 +139,7 @@ fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: A
                 Button(
                     onClick = {
                         authviewmodel.login(email, password)
-
-                        navController.navigate("Medicaldetails") {
-                            popUpTo("login") { inclusive = true }
-                        }
-                    },
+                              },
                     modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
