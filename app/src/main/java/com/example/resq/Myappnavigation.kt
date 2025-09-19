@@ -25,5 +25,31 @@ fun MyAppNavigation(
                 authviewmodel = authViewModel
             )
         }
+        composable("signup") {
+            CreateAccount(
+                modifier = Modifier,
+                navController = navController,
+                authviewmodel = authViewModel
+
+            )
+        }
+        composable ("respoder"){
+            Responderloginscreen(
+                modifier = Modifier,
+                navController = navController,
+                authviewmodel = authViewModel
+
+
+            )
+        }
+    composable ("medicaldetails"){
+        Medicaldetails(
+
+            modifier = Modifier,
+            navController = navController,
+            authviewmodel = authViewModel
+        )
+    }
+
     }
 }
