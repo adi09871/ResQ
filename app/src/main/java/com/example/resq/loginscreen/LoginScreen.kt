@@ -125,7 +125,13 @@ fun Loginscreen(modifier: Modifier.Companion,navController: NavController,authvi
                 )
 
                 Button(
-                    onClick = {},
+                    onClick = {
+                        authviewmodel.login(email, password)
+
+                        navController.navigate("Medicaldetails") {
+                            popUpTo("login") { inclusive = true }
+                        }
+                    },
                     modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
