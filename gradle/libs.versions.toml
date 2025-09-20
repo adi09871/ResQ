@@ -13,6 +13,7 @@ navigationCompose = "2.9.4"
 googleGmsGoogleServices = "4.4.3"
 firebaseAuth = "24.0.1"
 runtimeLivedata = "1.9.1"
+firebaseCrashlyticsBuildtools = "3.0.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +34,7 @@ ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
