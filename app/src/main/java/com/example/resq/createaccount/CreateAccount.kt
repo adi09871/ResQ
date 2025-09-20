@@ -42,6 +42,23 @@ import com.example.resq.ui.theme.pink1
 @Composable
 
 fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
+    val authState by authviewmodel.authstate.observeAsState()
+    val context = LocalContext.current
+
+    LaunchedEffect(authState) {
+        when (val state = authState) {
+            is Authstate.Error -> {
+                Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+            }
+            is Authstate.Autheticated -> {
+                Toast.makeText(context, "Account created successfully!", Toast.LENGTH_SHORT).show()
+                navController.navigate("login") {
+                    popUpTo("create_account") { inclusive = true }
+                }
+            }
+            else -> Unit
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
