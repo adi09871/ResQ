@@ -1,5 +1,6 @@
 package com.example.resq.medicaldetailspage
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,6 +45,12 @@ import com.example.resq.ui.theme.pink1
 
 @Composable
 fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
+    BackHandler {
+        navController.navigate("login") {
+            popUpTo("medicaldetails") { inclusive = true }
+            launchSingleTop = true
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -54,7 +61,12 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
 
         // 🔙 Top Row (Back Button + Title)
         Row(modifier = Modifier.fillMaxWidth()) {
-            IconButton(onClick = { navController.navigate("login") }) {
+            IconButton(onClick = {
+                navController.navigate("login") {
+                   inclusive = true
+                    launchSingleTop = true
+                }
+            }){
                 Icon(
                     painter = painterResource(id = R.drawable.backarrow),
                     contentDescription = "back",
