@@ -54,7 +54,7 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
 
         // 🔙 Top Row (Back Button + Title)
         Row(modifier = Modifier.fillMaxWidth()) {
-            IconButton(onClick = { }) {
+            IconButton(onClick = { navController.navigate("login") }) {
                 Icon(
                     painter = painterResource(id = R.drawable.backarrow),
                     contentDescription = "back",

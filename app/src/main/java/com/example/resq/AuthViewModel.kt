@@ -9,6 +9,7 @@ class AuthViewModel : ViewModel() {
     private val auth :  FirebaseAuth = FirebaseAuth.getInstance()
     private val _authstate = MutableLiveData<Authstate>()
     val authstate : LiveData<Authstate> = _authstate
+    var justLoggedIn = false
 
     init {
         checkAuthStatus()
@@ -18,7 +19,8 @@ class AuthViewModel : ViewModel() {
         if (auth.currentUser==null){
             _authstate.value= Authstate.Unauthenticated
         }else {
-            _authstate.value = Authstate.Autheticated
+            _authstate.value = Authstate.Unauthenticated
+            justLoggedIn = false
         }
 
     }
@@ -35,6 +37,7 @@ class AuthViewModel : ViewModel() {
                 if ( task.isSuccessful){_authstate.value = Authstate.Autheticated
 
             }else {
+
                     _authstate.value = Authstate.Error(task.exception?.message ?: "Something Went Wrong")
                 }
             }

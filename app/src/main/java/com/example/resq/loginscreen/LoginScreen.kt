@@ -58,6 +58,7 @@ fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: A
                 navController.navigate("Medicaldetails") {
                     popUpTo("login") { inclusive = true }
                 }
+                authviewmodel.justLoggedIn = false
             }
 
             is Authstate.Error -> {
@@ -169,9 +170,7 @@ fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: A
         Text(text = "Don't have acoount?")
         TextButton(
             onClick = {
-                navController.navigate("signup") {
-                    popUpTo("create_account") { inclusive = true }
-                }
+                navController.navigate("signup")
             },
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
         ){
