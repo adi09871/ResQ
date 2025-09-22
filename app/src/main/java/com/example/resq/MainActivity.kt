@@ -1,11 +1,16 @@
 package com.example.resq
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.ui.Modifier
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
+
+
 
 
 class MainActivity : ComponentActivity() {
@@ -21,6 +26,13 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier,
 authViewModel = authViewModel
             )
+
+
+            // Test Realtime Database
+            val database = Firebase.database.reference
+            database.child("test").setValue("Hello Firebase")
+                .addOnSuccessListener { Log.d("FirebaseCheck", "Database Connected!") }
+                .addOnFailureListener { Log.d("FirebaseCheck", "Database Failed") }
         }
     }
 }
