@@ -61,24 +61,7 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
 
         // 🔙 Top Row (Back Button + Title)
         Row(modifier = Modifier.fillMaxWidth()) {
-            IconButton(onClick = {
-                navController.navigate("login") {
-                   inclusive = true
-                    launchSingleTop = true
-                }
-            }){
-                Icon(
-                    painter = painterResource(id = R.drawable.backarrow),
-                    contentDescription = "back",
-                    tint = Color.Black,
-                    modifier = Modifier.padding(top = 4.dp, start = 12.dp)
-                )
-            }
-            Text(
-                text = "Back",
-                modifier = Modifier.padding(top = 16.dp),
-                fontSize = 14.sp
-            )
+
             Spacer(modifier = Modifier.width(50.dp))
             Text(
                 text = "ResQ Responder",

@@ -56,7 +56,7 @@ fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: A
         when (val state = authState) {
             is Authstate.Autheticated -> {
                 navController.navigate("Medicaldetails") {
-                    popUpTo("login") { inclusive = true }
+                    popUpTo("login") { inclusive = false  }
                 }
                 authviewmodel.justLoggedIn = false
             }
