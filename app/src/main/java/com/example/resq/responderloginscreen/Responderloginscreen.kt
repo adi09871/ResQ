@@ -57,7 +57,7 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
 
         // Top Row (Back button + Title)
         Row(modifier = Modifier.fillMaxWidth()) {
-            IconButton(onClick = { }) {
+            IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.backarrow),
                     contentDescription = "back",
