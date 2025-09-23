@@ -177,7 +177,7 @@ fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: A
         Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))}
 
         Button(
-            onClick = {},
+            onClick = {navController.navigate("responderlogin")},
             modifier = modifier.fillMaxWidth(0.6f),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
