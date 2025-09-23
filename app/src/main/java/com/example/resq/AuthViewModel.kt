@@ -63,7 +63,32 @@ class AuthViewModel : ViewModel() {
         auth.signOut()
         _authstate.value = Authstate.Unauthenticated
     }
+    private val validResponders = mapOf(
+        "responder001" to "pass001",
+        "responder002" to "pass002",
+        "responder003" to "pass003"
+    )
+
+    var loginSuccess = mutableStateOf(false)
+    var loginError = mutableStateOf("")
+
+    fun aceessystem(responderID: String, password: String) {
+        if (responderID.isEmpty() || password.isEmpty()) {
+            loginError.value = "Responder ID or Password cannot be empty"
+            loginSuccess.value = false
+            return
+        }
+
+        if (validResponders[responderID] == password) {
+            loginSuccess.value = true
+            loginError.value = ""
+        } else {
+            loginSuccess.value = false
+            loginError.value = "Invalid Responder ID or Password"
+        }
+    }
 }
+
 sealed class Authstate {
     object Autheticated : Authstate()
     object  Unauthenticated : Authstate()
