@@ -72,7 +72,7 @@ class AuthViewModel : ViewModel() {
 
     var loginSuccess = mutableStateOf(false)
     var loginError = mutableStateOf("")
-
+    var loggedInResponderID = mutableStateOf("")
     fun aceessystem(responderID: String, password: String) {
         if (responderID.isEmpty() || password.isEmpty()) {
             loginError.value = "Responder ID or Password cannot be empty"
@@ -83,9 +83,11 @@ class AuthViewModel : ViewModel() {
         if (validResponders[responderID] == password) {
             loginSuccess.value = true
             loginError.value = ""
+            loggedInResponderID.value = responderID
         } else {
             loginSuccess.value = false
             loginError.value = "Invalid Responder ID or Password"
+            loggedInResponderID.value = ""
         }
     }
 }

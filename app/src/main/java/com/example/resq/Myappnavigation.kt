@@ -20,7 +20,7 @@ fun MyAppNavigation(
 
     NavHost(
         navController = navController,
-        startDestination = "login"
+        startDestination = "login",
     ) {
         composable("login") {
             Loginscreen(
@@ -66,6 +66,7 @@ fun MyAppNavigation(
         composable ("responderhome"){
             Responderhome(  modifier = Modifier,
                 navController = navController,
+
                 authviewmodel = authViewModel)
         }
 
