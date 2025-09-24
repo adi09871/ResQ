@@ -6,7 +6,35 @@ import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
 
 @Composable
-fun Responderhome(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
-    // Implementation of the Responderhome screen goes here
+fun Responderhome(
+    modifier: Modifier,
+    navController: NavController,
+    authviewmodel: AuthViewModel,
+
+    ) {
+
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFE9FDF1))
+    ) {
+        Row(modifier = Modifier.padding(top = 25.dp, start = 16.dp)) {
+            Image(
+                painter = painterResource(com.example.resq.R.drawable.logo),
+                modifier  = modifier.size(30.dp)
+                      , contentDescription = null,
+                colorFilter = ColorFilter.tint(Color(0xFF008C3D))
+            )
+
+
+            Text(
+                text = "ResQ Responder",
+                fontSize = 24.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
 
 }
