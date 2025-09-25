@@ -71,6 +71,29 @@ fun Responderhome(
                 )
             }
         }
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .background(
+                    color = Color(0xFFE9FDF1),
+                    shape = RoundedCornerShape(12.dp)
+                )
+                .border(
+                    width = 1.dp,
+                    color = Color(0xFF00C853),
+                    shape = RoundedCornerShape(12.dp)
+                )
+                .padding(16.dp) // inner padding
+        ) {
+            
+            Text(
+                text = "Hello World",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+        }
     }
 
 }
