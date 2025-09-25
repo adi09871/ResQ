@@ -67,7 +67,7 @@ fun Responderhome(
                     painter = painterResource(id = com.example.resq.R.drawable.exitlogo),
                     contentDescription = "Responder Logo",
                     tint = Color(0xFF008C3D),
-                    modifier = Modifier.size(10.dp)
+                    modifier = Modifier.size(30.dp).padding( end = 6.dp)
                 )
             }
         }
