@@ -20,7 +20,7 @@ fun MyAppNavigation(
 
     NavHost(
         navController = navController,
-        startDestination = "login",
+        startDestination = "responderhome",
     ) {
         composable("login") {
             Loginscreen(

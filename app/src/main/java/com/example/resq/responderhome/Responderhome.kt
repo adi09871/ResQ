@@ -4,6 +4,8 @@ import android.R
 import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -50,8 +53,7 @@ fun Responderhome(
         ) {
             Image(
                 painter = painterResource(com.example.resq.R.drawable.logo),
-                modifier  = modifier.size(30.dp)
-                      , contentDescription = null,
+                modifier = modifier.size(30.dp), contentDescription = null,
                 colorFilter = ColorFilter.tint(Color(0xFF008C3D))
             )
 
@@ -71,9 +73,10 @@ fun Responderhome(
                     painter = painterResource(id = com.example.resq.R.drawable.exitlogo),
                     contentDescription = "Responder Logo",
                     tint = Color(0xFF008C3D),
-                    modifier = Modifier.size(30.dp).padding( end = 6.dp)
+
                 )
             }
+
         }
         Box(
             modifier = Modifier
@@ -90,7 +93,7 @@ fun Responderhome(
                 )
                 .padding(16.dp) // inner padding
         ) {
-            
+
             Text(
                 text = "Hello World",
                 fontSize = 18.sp,
