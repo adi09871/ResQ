@@ -42,6 +42,7 @@ fun Responderhome(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color(0xFFE9FDF1))
+
     ) {
         Row(
             modifier = Modifier.padding(top = 22.dp, start = 16.dp),
