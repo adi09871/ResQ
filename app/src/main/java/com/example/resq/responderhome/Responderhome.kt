@@ -43,7 +43,10 @@ fun Responderhome(
             .fillMaxSize()
             .background(color = Color(0xFFE9FDF1))
     ) {
-        Row(modifier = Modifier.padding(top = 25.dp, start = 16.dp)) {
+        Row(
+            modifier = Modifier.padding(top = 22.dp, start = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Image(
                 painter = painterResource(com.example.resq.R.drawable.logo),
                 modifier  = modifier.size(30.dp)
