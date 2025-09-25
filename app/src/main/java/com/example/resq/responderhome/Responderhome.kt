@@ -18,6 +18,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +44,18 @@ fun Responderhome(
     authviewmodel: AuthViewModel,
 
     ) {
+    val responderID = authviewmodel.loggedInResponderID.value
+    var currentTime by remember { mutableStateOf("") }
 
+    LaunchedEffect(Unit) {
+        while (true) {
+            val now = java.text.SimpleDateFormat("hh:mm:ss a", java.util.Locale.getDefault())
+                .format(java.util.Date())
+            currentTime  = now
+            kotlinx.coroutines.delay(1000)
+        }
+
+    }
 
     Column(
         modifier = Modifier
@@ -59,7 +75,7 @@ fun Responderhome(
 
 
             Text(
-                text = "ResQ Responder",
+                text = "ResQ ",
                 fontSize = 24.sp,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold
@@ -74,12 +90,12 @@ fun Responderhome(
                     contentDescription = "Responder Logo",
                     tint = Color(0xFF008C3D),
 
-                )
+                    )
             }
 
         }
 
-        Box(
+        Column (
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
@@ -95,13 +111,29 @@ fun Responderhome(
                 .padding(16.dp) // inner padding
         ) {
 
-            Text(
-                text = "Hello World",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
+                Text(
+                    text = "Welcome, ${responderID}",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.Black
+                )
+Spacer(modifier = Modifier.size(20 .dp))
+                Text(
+                    text = "Current Date & Time:",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color.DarkGray
+                )
+            Spacer(modifier = Modifier.size(20 .dp))
+                Text(
+                    text = currentTime,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color.Black
+                )
+            }
+
         }
     }
 
-}
+
