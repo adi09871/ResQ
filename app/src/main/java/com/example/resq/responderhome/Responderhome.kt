@@ -57,21 +57,31 @@ fun Responderhome(
 
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color(0xFFE9FDF1))
-
-    ) {
-        Row(
-            modifier = Modifier.padding(top = 22.dp, start = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
+    if (showScanner) {
+        // ✅ QR Scanner screen dikh raha hai
+        QRCodeScannerScreen(
+            onResult = { value ->
+                scannedResult = value
+                showScanner = false // scan hone ke baad scanner band
+            }
+        )
+    } else {
+        // ✅ Normal Home UI
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color(0xFFE9FDF1))
         ) {
-            Image(
-                painter = painterResource(com.example.resq.R.drawable.logo),
-                modifier = modifier.size(30.dp), contentDescription = null,
-                colorFilter = ColorFilter.tint(Color(0xFF008C3D))
-            )
+            Row(
+                modifier = Modifier.padding(top = 22.dp, start = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(com.example.resq.R.drawable.logo),
+                    modifier = modifier.size(30.dp),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(Color(0xFF008C3D))
+                )
 
 
             Text(
