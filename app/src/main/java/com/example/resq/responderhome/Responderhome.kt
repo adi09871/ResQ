@@ -133,7 +133,38 @@ Spacer(modifier = Modifier.size(20 .dp))
                 )
             }
 
+            // ✅ QR Scan Button
+            Box(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color(0xFF00C853),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .clickable { showScanner = true }
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Scan QR Code",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+            // ✅ Agar scan result mila hai to show kare
+            scannedResult?.let {
+                Text(
+                    text = "Scanned Result: $it",
+                    modifier = Modifier.padding(16.dp),
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+            }
         }
     }
+}
 
 
