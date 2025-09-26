@@ -45,7 +45,7 @@ import com.example.resq.AuthViewModel
 import com.example.resq.Authstate
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
-import com.google.firebase.crashlytics.buildtools.reloc.javax.annotation.meta.When
+
 
 
 @Composable

@@ -5,6 +5,7 @@ import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,25 +37,28 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
 import com.google.firebase.annotations.concurrent.Background
+import kotlinx.coroutines.delay
 
 @Composable
 fun Responderhome(
     modifier: Modifier,
     navController: NavController,
     authviewmodel: AuthViewModel,
-
-    ) {
+) {
     val responderID = authviewmodel.loggedInResponderID.value
     var currentTime by remember { mutableStateOf("") }
+
+    // ✅ QR Scanner states
+    var scannedResult by remember { mutableStateOf<String?>(null) }
+    var showScanner by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         while (true) {
             val now = java.text.SimpleDateFormat("hh:mm:ss a", java.util.Locale.getDefault())
                 .format(java.util.Date())
-            currentTime  = now
-            kotlinx.coroutines.delay(1000)
+            currentTime = now
+            delay(1000)
         }
-
     }
 
     if (showScanner) {
@@ -83,58 +87,54 @@ fun Responderhome(
                     colorFilter = ColorFilter.tint(Color(0xFF008C3D))
                 )
 
+                Text(
+                    text = "ResQ ",
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.weight(1f))
 
-            Text(
-                text = "ResQ ",
-                fontSize = 24.sp,
-                fontFamily = FontFamily.Monospace,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.weight(1f))
-
-            IconButton(
-                onClick = { /* TODO: action */ }
-            ) {
-                Icon(
-                    painter = painterResource(id = com.example.resq.R.drawable.exitlogo),
-                    contentDescription = "Responder Logo",
-                    tint = Color(0xFF008C3D),
-
+                IconButton(
+                    onClick = { /* TODO: action */ }
+                ) {
+                    Icon(
+                        painter = painterResource(id = com.example.resq.R.drawable.exitlogo),
+                        contentDescription = "Responder Logo",
+                        tint = Color(0xFF008C3D),
                     )
+                }
             }
 
-        }
-
-        Column (
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .background(
-                    color = Color(0xFFE9FDF1),
-                    shape = RoundedCornerShape(12.dp)
-                )
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFF00C853),
-                    shape = RoundedCornerShape(12.dp)
-                )
-                .padding(16.dp) // inner padding
-        ) {
-
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color(0xFFE9FDF1),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .border(
+                        width = 1.dp,
+                        color = Color(0xFF00C853),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .padding(16.dp) // inner padding
+            ) {
                 Text(
                     text = "Welcome, ${responderID}",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.Black
                 )
-Spacer(modifier = Modifier.size(20 .dp))
+                Spacer(modifier = Modifier.size(20.dp))
                 Text(
                     text = "Current Date & Time:",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     color = Color.DarkGray
                 )
-            Spacer(modifier = Modifier.size(20 .dp))
+                Spacer(modifier = Modifier.size(20.dp))
                 Text(
                     text = currentTime,
                     fontSize = 16.sp,
