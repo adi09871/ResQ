@@ -247,7 +247,8 @@ fun Responderhome(
                         color = Color(0xFFFFCDD2),
                         shape = RoundedCornerShape(12.dp)
                     )
-                    .padding(16.dp)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Text(
                     text = "Authorized Personnel Only",
