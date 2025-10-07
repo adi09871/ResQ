@@ -232,6 +232,29 @@ fun Responderhome(
                 )
 
             }
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .background(
+                        color = Color(0xFFF0FFF4),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .border(
+                        width = 1.dp,
+                        color = Color(0xFFFFCDD2),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .padding(16.dp)
+            ){
+                Text(
+                    text = "Authorized Personnel Only",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF880E4F)
+                )
+
+            }
 
         }
     }
