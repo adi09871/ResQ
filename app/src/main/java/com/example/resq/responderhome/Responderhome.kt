@@ -66,7 +66,7 @@ fun Responderhome(
         QRCodeScannerScreen(
             onResult = { value ->
                 scannedResult = value
-                showScanner = false // scan hone ke baad scanner band
+                showScanner = false
             }
         )
     } else {
