@@ -62,7 +62,7 @@ fun Responderhome(
     }
 
     if (showScanner) {
-        // ✅ QR Scanner screen dikh raha hai
+
         QRCodeScannerScreen(
             onResult = { value ->
                 scannedResult = value
