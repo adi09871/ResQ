@@ -142,6 +142,14 @@ fun Responderhome(
                     color = Color.Black
                 )
             }
+            Text(
+                "Emergency Scanner",
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            )
 
             // ✅ QR Scan Button
             Box(
