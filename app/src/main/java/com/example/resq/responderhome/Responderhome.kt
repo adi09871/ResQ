@@ -164,12 +164,23 @@ fun Responderhome(
                     .padding(16.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "Scan QR Code",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = com.example.resq.R.drawable.blankqrimage),
+                        contentDescription = "qrcode",
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Scan QR Code",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
             }
 
             // ✅ Agar scan result mila hai to show kare
