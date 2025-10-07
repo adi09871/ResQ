@@ -1,17 +1,19 @@
 package com.example.resq.responderhome
 
-import android.R
-import android.widget.ImageButton
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,14 +33,14 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
-import com.google.firebase.annotations.concurrent.Background
 import kotlinx.coroutines.delay
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Responderhome(
     modifier: Modifier,
@@ -70,7 +72,7 @@ fun Responderhome(
             }
         )
     } else {
-        // ✅ Normal Home UI
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -119,7 +121,7 @@ fun Responderhome(
                         color = Color(0xFF00C853),
                         shape = RoundedCornerShape(12.dp)
                     )
-                    .padding(16.dp) // inner padding
+                    .padding(16.dp)
             ) {
                 Text(
                     text = "Welcome, ${responderID}",
@@ -158,11 +160,12 @@ fun Responderhome(
                 textAlign = TextAlign.Center
             )
 
-            // ✅ QR Scan Button
+
             Box(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
+                    .height(120.dp)
                     .background(
                         color = Color(0xFF00C853),
                         shape = RoundedCornerShape(12.dp)
@@ -190,7 +193,6 @@ fun Responderhome(
                 }
             }
 
-            // ✅ Agar scan result mila hai to show kare
             scannedResult?.let {
                 Text(
                     text = "Scanned Result: $it",
@@ -251,7 +253,7 @@ fun Responderhome(
                     text = "Authorized Personnel Only",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF880E4F)
+                    color = Color(0xFF880E4F), textAlign = TextAlign.Center
                 )
 
             }
