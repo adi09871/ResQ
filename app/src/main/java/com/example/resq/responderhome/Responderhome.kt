@@ -150,6 +150,13 @@ fun Responderhome(
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
+            Spacer(modifier = Modifier.size(4.dp))
+            Text(
+                "Scan patient QR codes for emergency medical information",
+                modifier = Modifier.padding(start = 10.dp),
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center
+            )
 
             // ✅ QR Scan Button
             Box(
