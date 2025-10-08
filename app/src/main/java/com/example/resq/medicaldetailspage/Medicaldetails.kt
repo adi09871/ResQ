@@ -1,5 +1,6 @@
 package com.example.resq.medicaldetailspage
 
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -34,7 +35,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
+import com.example.resq.MedicalInfo
 import com.example.resq.ui.theme.pink1
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 
@@ -192,6 +199,8 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
+                var message by remember { mutableStateOf("") }
+
 
                 Button(
                     onClick = {
@@ -224,7 +233,6 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFE50914),
                         contentColor = Color.White
@@ -242,4 +250,3 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
         }
             }
         }
-    }}

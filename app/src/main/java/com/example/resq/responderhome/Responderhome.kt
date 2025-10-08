@@ -165,7 +165,7 @@ fun Responderhome(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(160.dp)
                     .background(
                         color = Color(0xFF00C853),
                         shape = RoundedCornerShape(12.dp)
@@ -186,7 +186,7 @@ fun Responderhome(
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "Scan QR Code",
-                        fontSize = 22.sp,
+                        fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
@@ -261,6 +261,7 @@ fun Responderhome(
                     "This information is confidential and protected by medical privacy laws.",
                     fontSize = 11.sp
 
+                )
             }
 
         }
