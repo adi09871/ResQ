@@ -256,6 +256,10 @@ fun Responderhome(
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF880E4F), textAlign = TextAlign.Center
                 )
+                Spacer(modifier = modifier.size(8.dp))
+                Text(
+                    "This information is confidential and protected by medical privacy laws.",
+                    fontSize = 11.sp
 
             }
 
