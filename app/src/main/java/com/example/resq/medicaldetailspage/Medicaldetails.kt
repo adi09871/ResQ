@@ -231,6 +231,13 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
                 ) {
                     Text(text = "Save Medical Information")
                 }
+
+                if (message.isNotEmpty()) {
+                    Spacer(Modifier.height(12.dp))
+                    Text(text = message, color = Color.Black, fontSize = 14.sp)
+                }
+            }
+        }
             }
         }
     }}
