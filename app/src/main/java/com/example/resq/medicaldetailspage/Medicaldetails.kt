@@ -194,7 +194,35 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
                 )
 
                 Button(
-                    onClick = {},
+                    onClick = {
+                        val uid = FirebaseAuth.getInstance().currentUser?.uid
+                        if (uid != null) {
+                            val MedicalInfo = MedicalInfo(
+                                fullName = fullname,
+                                bloodGroup = blodgroup,
+                                allergies = allergies,
+                                contact1 = conatct1,
+                                contact2 = conatct1,
+                                medicalNotes = medicalnotes
+                            )
+
+                            val dbRef = FirebaseDatabase.getInstance()
+                                .getReference("medical_info")
+                                .child(uid)
+
+                            CoroutineScope(Dispatchers.IO).launch {
+                                dbRef.setValue(MedicalInfo)
+                                    .addOnSuccessListener {
+                                        message = "✅ Data saved successfully!"
+                                    }
+                                    .addOnFailureListener {
+                                        message = "❌ Failed to save: ${it.message}"
+                                    }
+                            }
+                        } else {
+                            message = "User not logged in!"
+                        }
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
