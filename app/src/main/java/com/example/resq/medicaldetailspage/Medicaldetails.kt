@@ -226,8 +226,10 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = Color.White, containerColor = Color(0xFFE50914)
-                    )
+                        containerColor = Color(0xFFE50914),
+                        contentColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(text = "Save Medical Information")
                 }
