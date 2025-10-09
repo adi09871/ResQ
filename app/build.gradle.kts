@@ -45,9 +45,6 @@ android {
 }
 
 dependencies {
-    val cameraxVersion = "1.2.3"
-
-    // AndroidX & Compose
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,22 +57,25 @@ dependencies {
     implementation(libs.androidx.compose.runtime.livedata)
 
     // CameraX
-    implementation("androidx.camera:camera-core:$cameraxVersion")
-    implementation("androidx.camera:camera-camera2:$cameraxVersion")
-    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
-    implementation("androidx.camera:camera-view:$cameraxVersion")
-    implementation("androidx.camera:camera-extensions:$cameraxVersion")
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.extensions)
 
-    // ML Kit Barcode Scanning
-    implementation("com.google.mlkit:barcode-scanning:17.1.0")
+    // MLKit barcode scanning
+    implementation(libs.mlkit.barcode.scanning)
 
-    // Firebase (BOM manages versions)
-    implementation(platform("com.google.firebase:firebase-bom:34.3.0")) // BoM version is good
-    implementation("com.google.firebase:firebase-auth")          // Changed from firebase-auth-ktx
-    implementation("com.google.firebase:firebase-database")      // Changed from firebase-database-ktx
-    implementation("com.google.firebase:firebase-crashlytics")  // Changed from firebase-crashlytics-ktx
+    // Firebase BOM + dependencies
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.crashlytics.ktx)
 
-    // Testing
+    // ZXing (QR generation)
+    implementation(libs.zxing.core)
+    implementation(libs.zxing.embedded)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,5 +84,12 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("com.google.firebase:firebase-crashlytics-ktx:18.6.1")
+    // Import the Firebase BoM
+    implementation(platform(libs.firebase.bom))
+
+    // Add your Firebase dependencies. Versions are now managed by the BoM.
+    implementation(libs.firebase.crashlytics.ktx)
+    implementation(libs.firebase.analytics.ktx)
+    // implementation(libs.firebase.auth.ktx)
+    // implementation(libs.firebase.database.ktx)
 }
