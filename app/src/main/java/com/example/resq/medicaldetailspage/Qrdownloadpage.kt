@@ -25,7 +25,7 @@ fun Qrdownloadpage() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp, start = 16.dp) .background(color = pink1)
+            .background(color = pink1)
     ) {
         Icon(
             painter = painterResource(id = R.drawable.logo),
@@ -40,4 +40,5 @@ fun Qrdownloadpage() {
             modifier = Modifier.align(Alignment.TopStart).padding(start = 40.dp), color = Color(0xFFE50914)
         )
     }
+
 }
