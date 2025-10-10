@@ -14,14 +14,22 @@ import com.example.resq.R
 @Composable
 fun Qrdownloadpage() {
 
-
-
-    Column ()
-
-    {
-        Row {
-            Icon(painter = painterResource(R.drawable.logo),
-                contentDescription = null, modifier = Modifier.size(15.dp))
-        }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp, start = 16.dp) .background(color = pink1)
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = null,
+            modifier = Modifier.size(30.dp).align(Alignment.TopStart), Color(0xFFE50914)
+        )
+        Text(
+            text = "ResQ ",
+            fontSize = 24.sp,
+            fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+            modifier = Modifier.align(Alignment.TopStart).padding(start = 40.dp), color = Color(0xFFE50914)
+        )
     }
 }
