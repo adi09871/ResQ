@@ -56,23 +56,21 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.runtime.livedata)
 
-    // CameraX
+
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
 
-    // MLKit barcode scanning
+
     implementation(libs.mlkit.barcode.scanning)
 
-    // Firebase BOM + dependencies
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.crashlytics.ktx)
 
-    // ZXing (QR generation)
     implementation(libs.zxing.core)
     implementation(libs.zxing.embedded)
 
@@ -84,12 +82,9 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
 
-    // Add your Firebase dependencies. Versions are now managed by the BoM.
-    implementation(libs.firebase.crashlytics.ktx)
-    implementation(libs.firebase.analytics.ktx)
-    // implementation(libs.firebase.auth.ktx)
-    // implementation(libs.firebase.database.ktx)
+    implementation("com.google.firebase:firebase-crashlytics-ktx:19.4.4")
+    implementation("com.google.firebase:firebase-analytics-ktx:22.1.2")
+
 }
