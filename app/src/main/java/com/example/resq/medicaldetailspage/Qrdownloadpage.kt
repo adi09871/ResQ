@@ -70,4 +70,15 @@ fun Qrdownloadpage(
                 .align(Alignment.TopEnd)
         )
     }
+    Spacer(modifier = modifier.width(16.dp))
+    Column (){
+        Text(
+            text = "Your Emergency QR Code",
+            color = Color.Black,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = modifier
+                .padding(top = 24.dp, start = 16.dp, bottom = 8.dp)
+        )
+    }
 }
