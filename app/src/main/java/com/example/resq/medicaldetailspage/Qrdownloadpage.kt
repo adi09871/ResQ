@@ -26,19 +26,29 @@ fun Qrdownloadpage() {
         modifier = Modifier
             .fillMaxWidth()
             .background(color = pink1)
+            .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = null,
-            modifier = Modifier.size(30.dp).align(Alignment.TopStart), Color(0xFFE50914)
-        )
-        Text(
-            text = "ResQ ",
-            fontSize = 24.sp,
-            fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-            modifier = Modifier.align(Alignment.TopStart).padding(start = 40.dp), color = Color(0xFFE50914)
-        )
-    }
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier.align(Alignment.TopStart)
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                tint = Color(0xFFE50914),
+                modifier = modifier.size(28.dp)
+            )
+
+            Spacer(modifier = modifier.width(8.dp))
+
+            Text(
+                text = "ResQ",
+                fontSize = 24.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFFE50914)
+            )
+        }
 
 }
