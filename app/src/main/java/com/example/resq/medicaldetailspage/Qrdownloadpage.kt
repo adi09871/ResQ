@@ -30,7 +30,7 @@ fun Qrdownloadpage(
     authviewmodel: AuthViewModel
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(color = pink1)
             .padding(horizontal = 16.dp, vertical = 12.dp)
