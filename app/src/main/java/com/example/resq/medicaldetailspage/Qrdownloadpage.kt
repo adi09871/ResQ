@@ -66,7 +66,7 @@ fun Qrdownloadpage(
             painter = painterResource(id = R.drawable.profile),
             contentDescription = "Profile Icon",
             modifier = modifier
-                .size(28.dp)
+                .size(40.dp)
                 .align(Alignment.TopEnd)
         )
     }
