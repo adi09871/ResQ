@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.resq.createaccount.CreateAccount
 import com.example.resq.loginscreen.Loginscreen
 import com.example.resq.medicaldetailspage.Medicaldetails
+import com.example.resq.medicaldetailspage.Qrdownloadpage
 import com.example.resq.responderhome.Responderhome
 import com.example.resq.responderloginscreen.Responderloginscreen
 

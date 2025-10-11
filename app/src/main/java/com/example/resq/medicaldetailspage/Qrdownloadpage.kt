@@ -2,6 +2,7 @@ package com.example.resq.medicaldetailspage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,7 +26,6 @@ import com.example.resq.AuthViewModel
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
-@Preview
 @Composable
 fun Qrdownloadpage(
     modifier: Modifier.Companion,
