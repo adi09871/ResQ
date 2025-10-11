@@ -19,6 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.resq.AuthViewModel
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
