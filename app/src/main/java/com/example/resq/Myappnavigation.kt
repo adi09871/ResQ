@@ -74,6 +74,12 @@ fun MyAppNavigation(
 
                 authviewmodel = authViewModel)
         }
-
+        composable("qrdownloadpage") {
+            Qrdownloadpage(
+                modifier = Modifier,
+                navController = navController,
+                authviewmodel = authViewModel
+            )
+        }
     }
 }
