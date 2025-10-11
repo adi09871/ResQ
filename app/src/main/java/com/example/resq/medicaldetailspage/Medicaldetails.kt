@@ -219,15 +219,18 @@ fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel
                                 .getReference("medical_info")
                                 .child(uid)
 
-                            CoroutineScope(Dispatchers.IO).launch {
-                                dbRef.setValue(MedicalInfo)
-                                    .addOnSuccessListener {
-                                        message = "✅ Data saved successfully!"
+                            // Ye run hoga bina IO thread ke, Firebase already async hai
+                            dbRef.setValue(MedicalInfo)
+                                .addOnSuccessListener {
+                                    message = "✅ Data saved successfully!"
+                                    // Navigate after saving
+                                    navController.navigate("qrdownloadpage") {
+                                        popUpTo("medicaldetails") { inclusive = true }
                                     }
-                                    .addOnFailureListener {
-                                        message = "❌ Failed to save: ${it.message}"
-                                    }
-                            }
+                                }
+                                .addOnFailureListener {
+                                    message = "❌ Failed to save: ${it.message}"
+                                }
                         } else {
                             message = "User not logged in!"
                         }
