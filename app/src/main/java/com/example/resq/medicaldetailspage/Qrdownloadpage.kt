@@ -54,4 +54,13 @@ fun Qrdownloadpage(
             )
         }
 
+
+        Icon(
+            painter = painterResource(id = R.drawable.profile),
+            contentDescription = "Profile Icon",
+            modifier = modifier
+                .size(28.dp)
+                .align(Alignment.TopEnd)
+        )
+    }
 }
