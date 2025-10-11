@@ -20,8 +20,11 @@ import com.example.resq.ui.theme.pink1
 
 @Preview
 @Composable
-fun Qrdownloadpage() {
-
+fun Qrdownloadpage(
+    modifier: Modifier.Companion,
+    navController: NavHostController,
+    authviewmodel: AuthViewModel
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
