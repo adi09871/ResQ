@@ -64,17 +64,17 @@ fun Qrdownloadpage(
                 )
             }
 
+            Icon(
+                painter = painterResource(id = R.drawable.profile),
+                contentDescription = "Profile Icon",
+                modifier = Modifier
+                    .size(40.dp)
+                    .align(Alignment.TopEnd)
+            )
+        }
 
-        Icon(
-            painter = painterResource(id = R.drawable.profile),
-            contentDescription = "Profile Icon",
-            modifier = modifier
-                .size(40.dp)
-                .align(Alignment.TopEnd)
-        )
-    }
-    Spacer(modifier = modifier.width(16.dp))
-    Column (){
+
+
         Text(
             text = "Your Emergency QR Code",
             color = Color.Black,
