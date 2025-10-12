@@ -34,21 +34,24 @@ fun Qrdownloadpage(
 ) {
     Box(
         modifier = modifier
-            .fillMaxWidth()
             .background(color = pink1)
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-    ) {
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.align(Alignment.TopStart)
+    ){
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = pink1)
+                .padding(top = 16.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.logo),
-                contentDescription = "Logo",
-                tint = Color(0xFFE50914),
-                modifier = modifier.size(28.dp)
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.align(Alignment.TopStart)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Logo",
+                    tint = Color(0xFFE50914),
+                    modifier = Modifier.size(28.dp)
+                )
 
             Spacer(modifier = modifier.width(8.dp))
 
