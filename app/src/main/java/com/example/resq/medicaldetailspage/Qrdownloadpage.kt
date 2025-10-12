@@ -87,4 +87,17 @@ fun Qrdownloadpage(
         )
 
 
-    }}
+        Box(modifier = Modifier.padding(18.dp)
+            .background(Color.White)
+            .fillMaxWidth()) {
+            //yha pr qr code wala image lgana h
+            Text(
+                "QR Code Image Placeholder",
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(100.dp)
+            )
+        }
+
+    }
+}
