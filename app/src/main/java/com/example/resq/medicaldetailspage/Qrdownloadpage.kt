@@ -91,6 +91,11 @@ fun Qrdownloadpage(
             color = Color.Black,
             fontSize = 15.sp,
 
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp)
+                .wrapContentWidth(Alignment.CenterHorizontally)
+        )
 
         Box(modifier = Modifier.padding(18.dp)
             .background(Color.White)
