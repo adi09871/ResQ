@@ -55,14 +55,14 @@ fun Qrdownloadpage(
 
             Spacer(modifier = modifier.width(8.dp))
 
-            Text(
-                text = "ResQ",
-                fontSize = 24.sp,
-                fontFamily = FontFamily.Monospace,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFFE50914)
-            )
-        }
+                Text(
+                    text = "ResQ",
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFE50914)
+                )
+            }
 
 
         Icon(
