@@ -97,10 +97,19 @@ fun Qrdownloadpage(
                 .wrapContentWidth(Alignment.CenterHorizontally)
         )
 
-        Box(modifier = Modifier.padding(18.dp)
-            .background(Color.White)
-            .fillMaxWidth()) {
-            
+        Box( modifier = Modifier
+            .padding(18.dp)
+            .fillMaxWidth()
+            .border(
+                width = 2.dp,
+                color = Color(0xFF008C3D),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(16.dp))
+            ) {
+
             Text(
                 "QR Code Image Placeholder",
                 modifier = Modifier
