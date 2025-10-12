@@ -85,6 +85,11 @@ fun Qrdownloadpage(
                 .padding(start = 16.dp)
             .wrapContentWidth(Alignment.CenterHorizontally)
         )
+        Spacer(modifier = Modifier.size(4.dp))
+        Text(
+            text = "Ready for emergency situations",
+            color = Color.Black,
+            fontSize = 15.sp,
 
 
         Box(modifier = Modifier.padding(18.dp)
