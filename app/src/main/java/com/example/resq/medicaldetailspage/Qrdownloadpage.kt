@@ -53,7 +53,7 @@ fun Qrdownloadpage(
                     modifier = Modifier.size(28.dp)
                 )
 
-            Spacer(modifier = modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(4.dp))
 
                 Text(
                     text = "ResQ",
