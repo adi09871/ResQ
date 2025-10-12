@@ -85,5 +85,6 @@ fun Qrdownloadpage(
                 .padding(start = 16.dp)
             .wrapContentWidth(Alignment.CenterHorizontally)
         )
-    }
-}
+
+
+    }}
