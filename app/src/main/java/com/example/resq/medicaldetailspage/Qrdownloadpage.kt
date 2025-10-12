@@ -80,8 +80,10 @@ fun Qrdownloadpage(
             color = Color.Black,
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
-            modifier = modifier
-                .padding(top = 24.dp, start = 16.dp, bottom = 8.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp)
+            .wrapContentWidth(Alignment.CenterHorizontally)
         )
     }
 }
