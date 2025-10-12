@@ -31,8 +31,8 @@ fun Qrdownloadpage(
     modifier: Modifier.Companion,
     navController: NavHostController,
     authviewmodel: AuthViewModel
-) {
-    Box(
+)  {
+    Column(
         modifier = modifier
             .background(color = pink1)
     ){
