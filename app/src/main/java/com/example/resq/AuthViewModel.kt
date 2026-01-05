@@ -20,7 +20,7 @@ class AuthViewModel : ViewModel() {
         if (auth.currentUser==null){
             _authstate.value= Authstate.Unauthenticated
         }else {
-            _authstate.value = Authstate.Unauthenticated
+            _authstate.value = Authstate.Autheticated
             justLoggedIn = false
         }
 
