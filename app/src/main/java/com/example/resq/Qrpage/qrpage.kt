@@ -49,7 +49,10 @@ fun generateQrCode(data: String): Bitmap? {
     }
 }
 @Composable
-fun Qrpage() {
+fun Qrpage(modifier : Modifier
+) {
+    // 1. Firebase se User UID fetch karein
+    val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "No User"
 
 
     Column(
