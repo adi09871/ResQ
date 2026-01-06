@@ -43,6 +43,7 @@ fun generateQrCode(data: String): Bitmap? {
         null
     }
 }
+
 @Composable
 fun Qrpage(modifier : Modifier
 ) {
