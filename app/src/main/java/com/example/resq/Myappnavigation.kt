@@ -83,10 +83,9 @@ fun MyAppNavigation(
                 authviewmodel = authViewModel
             )
         }
-        composable  ("qrpage") {
-            Qrpage(modifier = Modifier,
-                navController = navController,
-                authviewmodel = authViewModel
-
+        composable("qrpage") {
+            Qrpage(
+                modifier = Modifier,
+              
             )
         }}}
