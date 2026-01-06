@@ -70,8 +70,9 @@ fun MyAppNavigation(
                 authviewmodel = authViewModel
             )
         }
-        composable ("responderhome"){
-            Responderhome(  modifier = Modifier,
+        composable("responderhome") {
+            Responderhome(
+                modifier = Modifier,
                 navController = navController,
 
                 authviewmodel = authViewModel)
