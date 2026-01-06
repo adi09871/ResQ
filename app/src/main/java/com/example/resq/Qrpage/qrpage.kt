@@ -1,6 +1,7 @@
 package com.example.resq.medicaldetailspage
 
 import android.graphics.Bitmap
+import android.graphics.Color as AndroidColor //
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,22 +14,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
+import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 
-@Composable
+// Yeh function ab "active" ho jayega kyunki niche ise call kiya gaya hai
 fun generateQrCode(data: String): Bitmap? {
     return try {
         val writer = QRCodeWriter()
-        // QR size 512x512
         val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 512, 512)
         val width = bitMatrix.width
         val height = bitMatrix.height
@@ -55,9 +58,9 @@ fun Qrpage(modifier : Modifier
     val qrBitmap = remember(uid) { generateQrCode(uid) }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .background(color = pink1)
+            .background(color = pink1) //
     ) {
         // Header Section
         Box(
