@@ -80,9 +80,9 @@ fun MyAppNavigation(
             )
         }
         composable("qrpage") {
-            Qrpage(
-                modifier = Modifier,
-
+            Qrdownloadpage(
+                navController = navController,
+                authviewmodel = authViewModel
             )
 
 
