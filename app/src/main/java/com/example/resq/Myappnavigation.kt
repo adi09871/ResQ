@@ -74,8 +74,8 @@ fun MyAppNavigation(
             Responderhome(
                 modifier = Modifier,
                 navController = navController,
-
-                authviewmodel = authViewModel)
+                authviewmodel = authViewModel
+            )
         }
         composable("qrdownloadpage") {
             Qrdownloadpage(
