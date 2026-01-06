@@ -57,25 +57,34 @@ fun Qrpage() {
             .fillMaxSize()
             .background(color = pink1)
     ) {
-        Row {
-
-            Image(
-                painter = painterResource(R.drawable.logo),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(top = 8.dp, start = 6.dp)
+        // Header Section
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    painter = painterResource(id = R.drawable.logo), //
+                    contentDescription = "Logo",
+                    tint = Color(0xFFE50914),
+                    modifier = Modifier.size(28.dp)
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = "ResQ",
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFE50914)
+                )
+            }
+            Icon(
+                painter = painterResource(id = R.drawable.profile), //
+                contentDescription = "Profile",
+                modifier = Modifier.size(40.dp).align(Alignment.TopEnd)
             )
-            Text(
-                text = "ResQ ",
-                color = Color(0xFF008C3D),
-                modifier = Modifier
-                    .padding(top = 12.dp), fontSize = 18.sp,
-                fontFamily = FontFamily.Monospace,
-                fontWeight = FontWeight.Bold
-            )
-
-            Spacer(modifier = Modifier.weight(1f))
+        }
 
             Text(
                 "Profile", modifier = Modifier
