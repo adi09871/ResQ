@@ -87,5 +87,6 @@ dependencies {
 
     implementation("com.google.firebase:firebase-crashlytics-ktx:19.4.4")
     implementation("com.google.firebase:firebase-analytics-ktx:22.1.2")
+    implementation("com.google.zxing:core:3.5.3")
 
 }
