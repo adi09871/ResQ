@@ -49,6 +49,8 @@ fun Qrpage(modifier : Modifier
     // 1. Firebase se User UID fetch karein
     val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "No User"
 
+    // 2. CALL THE FUNCTION HERE: Is line se aapka function active (colored) ho jayega
+    val qrBitmap = remember(uid) { generateQrCode(uid) }
 
     Column(
         modifier = Modifier
