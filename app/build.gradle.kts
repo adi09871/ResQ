@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.zxing.core)
     implementation(libs.zxing.embedded)
     implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.ui.graphics)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
