@@ -58,24 +58,9 @@ fun Loginscreen(
     val context = LocalContext.current
 
     LaunchedEffect(authState) {
-        when (authState) {
-            is Authstate.Autheticated -> {
-                navController.navigate("medicaldetails") {
-                    popUpTo("login") { inclusive = true }
-                }
-            }
-
-            is Authstate.Error -> {
-                Toast.makeText(
-                    context,
-                    (authState as Authstate.Error).message,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-            else -> Unit
-        }
-    }
+        if (authState is Authstate.Unauthenticated) {
+            navController.navigate("login") {
+                popUpTo(0) }}}// Pura stack clear
     Column(
         modifier = modifier
             .fillMaxSize()
