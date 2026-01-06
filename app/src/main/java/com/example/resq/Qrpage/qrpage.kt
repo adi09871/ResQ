@@ -1,4 +1,4 @@
-package com.example.resq.Qrpage
+package com.example.resq.medicaldetailspage
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image
