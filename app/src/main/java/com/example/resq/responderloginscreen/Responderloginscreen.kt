@@ -179,6 +179,14 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
                         Text("Acess system")
                     }
 
+                    // Navigate when authenticated
+                    LaunchedEffect(authState) {
+                        if (authState is Authstate.Autheticated) {
+                            navController.navigate("Responderhome") {
+                                popUpTo("responderLogin") { inclusive = true }
+                            }
+                        }
+                    }
 
 
                 }
