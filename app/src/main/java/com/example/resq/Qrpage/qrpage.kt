@@ -21,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.resq.AuthViewModel
 
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
@@ -49,7 +51,9 @@ fun generateQrCode(data: String): Bitmap? {
 }
 
 @Composable
-fun Qrpage(modifier : Modifier
+fun Qrdownloadpage(modifier: Modifier = Modifier,
+           navController: NavController,
+           authviewmodel: AuthViewModel
 ) {
     // 1. Firebase se User UID fetch karein
     val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "No User"
@@ -109,7 +113,7 @@ fun Qrpage(modifier : Modifier
             contentAlignment = Alignment.Center
         ) {
             if (qrBitmap != null) {
-                // Bitmap ko Image mein convert karke display karein
+
                 Image(
                     bitmap = qrBitmap.asImageBitmap(),
                     contentDescription = "QR Code",

@@ -55,7 +55,6 @@ fun Loginscreen(
     authviewmodel: AuthViewModel
 ) {
     val authState by authviewmodel.authstate.observeAsState()
-    val context = LocalContext.current
 
     LaunchedEffect(authState) {
         if (authState is Authstate.Unauthenticated) {
