@@ -7,88 +7,61 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthViewModel : ViewModel() {
-    private val auth :  FirebaseAuth = FirebaseAuth.getInstance()
+
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val _authstate = MutableLiveData<Authstate>()
-    val authstate : LiveData<Authstate> = _authstate
-    var justLoggedIn = false
+    val authstate: LiveData<Authstate> = _authstate
+
 
     init {
         checkAuthStatus()
     }
 
-    fun checkAuthStatus (){
-        if (auth.currentUser==null){
-            _authstate.value= Authstate.Unauthenticated
-        }else {
+    fun checkAuthStatus() {
+        if (auth.currentUser == null) {
+            _authstate.value = Authstate.Unauthenticated
+        } else {
             _authstate.value = Authstate.Autheticated
-            justLoggedIn = false
         }
-
     }
 
-    fun login(email : String,password : String){
-        if (email.isEmpty() || password.isEmpty()){
-            _authstate.value = Authstate.Error("Email or password can't be empty ")
+    fun login(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
+            _authstate.value = Authstate.Error("Email or password can't be empty")
             return
         }
 
         _authstate.value = Authstate.Loading
-        auth.signInWithEmailAndPassword(email,password)
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                if ( task.isSuccessful){_authstate.value = Authstate.Autheticated
-
-            }else {
-
-                    _authstate.value = Authstate.Error(task.exception?.message ?: "Something Went Wrong")
+                if (task.isSuccessful) {
+                    _authstate.value = Authstate.Autheticated
+                } else {
+                    _authstate.value =
+                        Authstate.Error(task.exception?.message ?: "Login failed")
                 }
             }
     }
 
-
-    fun signup(email : String,password : String){
-        if (email.isEmpty() || password.isEmpty()){
-            _authstate.value = Authstate.Error("Email or password can't be empty ")
-        }
-
-        _authstate.value = Authstate.Loading
-        auth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener { task ->
-                if ( task.isSuccessful){
-                }else {
-                    _authstate.value = Authstate.Error(task.exception?.message ?: "Something Went Wrong")
-                }
-            }
-    }
-
-    fun signout (){
+    fun signout() {
         auth.signOut()
         _authstate.value = Authstate.Unauthenticated
     }
-    private val validResponders = mapOf(
-        "responder001" to "pass001",
-        "responder002" to "pass002",
-        "responder003" to "pass003"
-    )
-
-    var loginSuccess = mutableStateOf(false)
-    var loginError = mutableStateOf("")
-    var loggedInResponderID = mutableStateOf("")
-    fun aceessystem(responderID: String, password: String) {
-        if (responderID.isEmpty() || password.isEmpty()) {
-            loginError.value = "Responder ID or Password cannot be empty"
-            loginSuccess.value = false
+    fun signup(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
+            _authstate.value = Authstate.Error("Email or password can't be empty")
             return
         }
 
-        if (validResponders[responderID] == password) {
-            loginSuccess.value = true
-            loginError.value = ""
-            loggedInResponderID.value = responderID
-        } else {
-            loginSuccess.value = false
-            loginError.value = "Invalid Responder ID or Password"
-            loggedInResponderID.value = ""
-        }
+        _authstate.value = Authstate.Loading
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _authstate.value = Authstate.Autheticated // Note: Matches your typo in the sealed class
+                } else {
+                    _authstate.value = Authstate.Error(task.exception?.message ?: "Signup failed")
+                }
+            }
     }
 }
 

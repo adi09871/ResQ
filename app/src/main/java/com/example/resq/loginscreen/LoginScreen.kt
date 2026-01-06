@@ -49,20 +49,28 @@ import com.example.resq.ui.theme.pink1
 
 
 @Composable
-fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
+fun Loginscreen(
+    modifier: Modifier,
+    navController: NavController,
+    authviewmodel: AuthViewModel
+) {
     val authState by authviewmodel.authstate.observeAsState()
     val context = LocalContext.current
+
     LaunchedEffect(authState) {
-        when (val state = authState) {
+        when (authState) {
             is Authstate.Autheticated -> {
-                navController.navigate("Medicaldetails") {
-                    popUpTo("login") { inclusive = false  }
+                navController.navigate("medicaldetails") {
+                    popUpTo("login") { inclusive = true }
                 }
-                authviewmodel.justLoggedIn = false
             }
 
             is Authstate.Error -> {
-                Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    (authState as Authstate.Error).message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             else -> Unit
@@ -177,7 +185,7 @@ fun Loginscreen(modifier: Modifier,navController: NavController,authviewmodel: A
         Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))}
 
         Button(
-            onClick = {navController.navigate("responderlogin")},
+            onClick = {navController.navigate("qrpage")},
             modifier = modifier.fillMaxWidth(0.6f),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(

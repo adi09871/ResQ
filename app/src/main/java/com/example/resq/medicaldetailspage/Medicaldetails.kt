@@ -20,6 +20,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,12 +44,40 @@ import com.google.firebase.database.FirebaseDatabase
 @OptIn(ExperimentalMaterial3Api::class)
 
 @Composable
-fun Medicaldetails(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
-    BackHandler {
-        navController.navigate("login") {
-            popUpTo("medicaldetails") { inclusive = true }
-            launchSingleTop = true
+fun Medicaldetails(
+    modifier: Modifier,
+    navController: NavController,
+    authviewmodel: AuthViewModel
+) {
+    val uid = FirebaseAuth.getInstance().currentUser?.uid
+    val dbRef = FirebaseDatabase.getInstance()
+        .getReference("medical_info")
+        .child(uid ?: "")
+
+    var showForm by remember { mutableStateOf(false) }
+
+    // 🔑 Decide screen here
+    LaunchedEffect(Unit) {
+        if (uid == null) return@LaunchedEffect
+
+        dbRef.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                // ✅ Medical data already present → skip form
+                navController.navigate("qrdownloadpage") {
+                    popUpTo("medicaldetails") { inclusive = true }
+                }
+            } else {
+                // ❌ No data → show form
+                showForm = true
+            }
+        }.addOnFailureListener {
+            showForm = true
         }
+    }
+
+    if (!showForm) {
+        Text("Loading medical information...")
+        return
     }
 
     Column(

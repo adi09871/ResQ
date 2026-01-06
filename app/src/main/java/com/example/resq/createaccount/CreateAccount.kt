@@ -190,17 +190,19 @@ fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel:
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
-
+                @Composable
+                fun signup(email: String, password: String) {
                 Button(
-                    onClick = {   authviewmodel.signup(email, password)},
+                    onClick = {
+                        authviewmodel.signup(email, password)
+                    },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = Color.White, containerColor = Color(0xFFE50914)
+                        containerColor = Color(0xFFE50914),
+                        contentColor = Color.White
                     )
                 ) {
-                    Text(text = "Create Account")
+                    Text("Create Account")
                 }
-            }
         }
-    }}
+    }}}}
