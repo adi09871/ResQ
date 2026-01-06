@@ -169,7 +169,7 @@ fun Loginscreen(
         Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))}
 
         Button(
-            onClick = {navController.navigate("qrpage")},
+            onClick = {navController.navigate("responderlogin")},
             modifier = modifier.fillMaxWidth(0.6f),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
