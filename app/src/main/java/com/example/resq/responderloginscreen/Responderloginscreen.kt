@@ -166,12 +166,11 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
                             .defaultMinSize(minHeight = 40.dp),
                         textStyle = TextStyle(fontSize = 14.sp)
                     )
-                    Button(onClick = {  authviewmodel.aceessystem(reounderID, password)
-                        if (authviewmodel.loginSuccess.value) {
-                            navController.navigate("Responderhome") {
-                                popUpTo("responderLogin") { inclusive = true }
-                            }
-                        }},
+
+                    // Observe auth state
+                    val authState by authviewmodel.authstate.observeAsState()
+
+                    Button(onClick = { authviewmodel.login(reounderID, password) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
