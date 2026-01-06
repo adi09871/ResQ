@@ -11,11 +11,14 @@ class AuthViewModel : ViewModel() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val _authstate = MutableLiveData<Authstate>()
     val authstate: LiveData<Authstate> = _authstate
+    var loggedInResponderID = mutableStateOf("")
+
 
 
     init {
         checkAuthStatus()
     }
+
 
     fun checkAuthStatus() {
         if (auth.currentUser == null) {

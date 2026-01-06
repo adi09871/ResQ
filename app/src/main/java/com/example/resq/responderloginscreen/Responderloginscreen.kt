@@ -26,6 +26,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
+import com.example.resq.Authstate
 import com.example.resq.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,9 +49,8 @@ import com.example.resq.R
 fun Responderloginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
 
 
-
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(color = Color(0xFFE9FDF1))
     ) {
