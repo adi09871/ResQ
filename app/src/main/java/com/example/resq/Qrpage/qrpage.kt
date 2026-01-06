@@ -89,58 +89,33 @@ fun Qrpage(modifier : Modifier
             )
         }
 
-            Text(
-                "Profile", modifier = Modifier
-                    .padding(top = 12.dp, end = 16.dp)
-                    .clickable {
-                        //yha apr action likhna baaki h
-                    }, fontSize = 16.sp
-            )
-        }
+        Text(
+            text = "Your Emergency QR Code",
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+            fontWeight = FontWeight.Bold,
+            fontSize = 22.sp
+        )
 
-        Spacer(modifier = Modifier.size(20.dp))
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth()
+        // 3. QR Code Display Box
+        Box( modifier = Modifier
+            .padding(18.dp)
+            .fillMaxWidth()
+            .height(350.dp)
+            .border(width = 2.dp, color = Color(0xFF008C3D), shape = RoundedCornerShape(16.dp)) //
+            .background(color = Color.White, shape = RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.Center
         ) {
-            Text(
-                " Your Emergency QR Code ",
-                modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-                fontSize = 22.sp
-            )
-            Spacer(modifier = Modifier.size(2.dp))
-            Text(
-                "Ready for emergency situations",
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center,
-            )
-            Spacer(modifier = Modifier.size(15.dp))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
-                    .background(Color(0xFFE9FDF1))
-                    .padding(20.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Column {
-                    Text("Emergency Medical QR ", fontSize = 15.sp)
-
-                    // Yha pr QR code wala image lgana baaki h
-
-
-                    Spacer(modifier = Modifier.size(12.dp))
-
-                    // Yha pr QR Image aayega
-                    // Image(painter = painterResource(R.drawable.qr), contentDescription = null)
-
-                    Spacer(modifier = Modifier.size(12.dp))
-
-                    Button(onClick = { /* action */ }) {
-                        Text("Download QR")
-
-                    }
-                }
+            if (qrBitmap != null) {
+                // Bitmap ko Image mein convert karke display karein
+                Image(
+                    bitmap = qrBitmap.asImageBitmap(),
+                    contentDescription = "QR Code",
+                    modifier = Modifier.size(250.dp)
+                )
+            } else {
+                Text("Generating QR...")
             }
         }
-    }}
+    }
+}
