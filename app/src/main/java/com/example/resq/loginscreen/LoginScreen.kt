@@ -145,6 +145,7 @@ fun Loginscreen(
                 Button(
                     onClick = {
                         authviewmodel.login(email, password)
+                        navController.navigate("medicaldetails")
                               },
                     modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),

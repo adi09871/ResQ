@@ -22,9 +22,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner // 👈 IMPORT ADDED
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LifecycleOwner
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 
@@ -32,9 +32,11 @@ import com.google.mlkit.vision.common.InputImage
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun QRCodeScannerScreen(
-    onResult: (String) -> Unit // scan hone ke baad result callback
+    onResult: (String) -> Unit
 ) {
     val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current // 👈 FIX: Sahi Lifecycle Owner yahan se milega
+
     var hasPermission by remember {
         mutableStateOf(
             ContextCompat.checkSelfPermission(
@@ -82,12 +84,12 @@ fun QRCodeScannerScreen(
                                     .addOnSuccessListener { barcodes ->
                                         for (barcode in barcodes) {
                                             barcode.rawValue?.let { value ->
-                                                onResult(value) // result mil gaya
+                                                onResult(value) // Result milte hi wapas bhej dega
                                             }
                                         }
                                     }
                                     .addOnCompleteListener {
-                                        imageProxy.close()
+                                        imageProxy.close() // Image close karna zaroori hai
                                     }
                             } else {
                                 imageProxy.close()
@@ -97,8 +99,9 @@ fun QRCodeScannerScreen(
 
                     try {
                         cameraProvider.unbindAll()
+                        // 👇 FIX: 'context as LifecycleOwner' ki jagah 'lifecycleOwner' use kiya
                         cameraProvider.bindToLifecycle(
-                            context as LifecycleOwner,
+                            lifecycleOwner,
                             CameraSelector.DEFAULT_BACK_CAMERA,
                             preview,
                             analyzer
@@ -116,4 +119,3 @@ fun QRCodeScannerScreen(
         Text("Camera permission required to scan QR")
     }
 }
-

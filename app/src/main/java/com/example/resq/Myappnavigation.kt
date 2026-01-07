@@ -44,7 +44,7 @@ fun MyAppNavigation(
                 authviewmodel = authViewModel
             )
         }
-        composable("respoder") {
+        composable("responder") {
             Responderloginscreen(
                 modifier = Modifier,
                 navController = navController,
