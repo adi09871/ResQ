@@ -253,20 +253,8 @@ fun Responderhome(
                     .padding(16.dp)
             ){
                 Text(
-                    text = "Instructions:",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.size(8.dp))
-                Text(
-                    text = "1. Tap the 'Scan QR Code' box to open the scanner.\n" +
-                            "2. Align the patient's QR code within the frame.\n" +
-                            "3. The app will automatically scan and display the patient's emergency information.\n" +
-                            "4. Use this information to provide appropriate medical assistance.",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color.DarkGray
+                    "1. Scan patient QR to fetch details.\n2. Verify identity before treatment.\n3. Data is fetched from secure server.",
+                    fontSize = 16.sp, color = Color.DarkGray
                 )
 
             }
