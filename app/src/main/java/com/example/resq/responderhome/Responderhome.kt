@@ -157,22 +157,16 @@ fun Responderhome(
                 Spacer(modifier = Modifier.size(10.dp))
                 Text(text = "Current Time: $currentTime", fontSize = 16.sp, color = Color.Black)
             }
-            Text(
-                "Emergency Scanner",
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.size(4.dp))
-            Text(
-                "Scan patient QR codes for emergency medical information",
-                modifier = Modifier.padding(start = 10.dp),
-                fontSize = 15.sp,
-                textAlign = TextAlign.Center
-            )
 
+
+            if (medicalInfo == null) {
+             
+                Text(
+                    "Emergency Scanner",
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
 
                 Box(
                     modifier = Modifier
