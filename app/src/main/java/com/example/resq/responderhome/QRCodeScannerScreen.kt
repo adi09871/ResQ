@@ -85,7 +85,7 @@ fun QRCodeScannerScreen(
                                     .addOnSuccessListener { barcodes ->
                                         for (barcode in barcodes) {
                                             barcode.rawValue?.let { value ->
-                                                onResult(value) // Result milte hi wapas bhej dega
+                                                onResult(value)
                                             }
                                         }
                                     }
