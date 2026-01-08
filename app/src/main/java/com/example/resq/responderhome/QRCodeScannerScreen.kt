@@ -90,7 +90,7 @@ fun QRCodeScannerScreen(
                                         }
                                     }
                                     .addOnCompleteListener {
-                                        imageProxy.close() // Image close karna zaroori hai
+                                        imageProxy.close()
                                     }
                             } else {
                                 imageProxy.close()
