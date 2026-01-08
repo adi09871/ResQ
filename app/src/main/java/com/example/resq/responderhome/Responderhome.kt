@@ -153,26 +153,9 @@ fun Responderhome(
                     )
                     .padding(16.dp)
             ) {
-                Text(
-                    text = "Welcome, ${responderID}",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.Black
-                )
-                Spacer(modifier = Modifier.size(20.dp))
-                Text(
-                    text = "Current Date & Time:",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color.DarkGray
-                )
-                Spacer(modifier = Modifier.size(20.dp))
-                Text(
-                    text = currentTime,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color.Black
-                )
+                Text(text = "Welcome, $responderID", fontSize = 18.sp, fontWeight = FontWeight.Medium)
+                Spacer(modifier = Modifier.size(10.dp))
+                Text(text = "Current Time: $currentTime", fontSize = 16.sp, color = Color.Black)
             }
             Text(
                 "Emergency Scanner",
