@@ -190,23 +190,12 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
                             contentColor = Color.White, containerColor = Color(0xFF008C3D)
-                        )) {
-                        Text("Acess system")
+                        )
+                    ) {
+                        Text("Access System")
                     }
-
-                    // Navigate when authenticated
-                    LaunchedEffect(authState) {
-                        if (authState is Authstate.Autheticated) {
-                            navController.navigate("Responderhome") {
-                                popUpTo("responderLogin") { inclusive = true }
-                            }
-                        }
-                    }
-
-
                 }
             }
         }
-
     }
 }
