@@ -158,7 +158,9 @@ fun Responderhome(
                         .background(color = Color(0xFF00C853), shape = RoundedCornerShape(12.dp))
                         .clickable {
 
-                            medicalInfo = null
+                            showScanner = true
+
+
                             scannedUID = null
                         }
                         .padding(16.dp),
