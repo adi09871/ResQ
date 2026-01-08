@@ -66,6 +66,33 @@ fun Responderhome(
         }
     }
 
+
+    LaunchedEffect(scannedUID) {
+        if (scannedUID != null) {
+            isLoading = true
+            try {
+                // Database Path: users -> {UID} -> (Data)
+                val dbRef = FirebaseDatabase.getInstance().getReference("users").child(scannedUID!!)
+
+                dbRef.get().addOnSuccessListener { snapshot ->
+                    if (snapshot.exists()) {
+                        // Data ko MedicalInfo class mein convert karein
+                        val info = snapshot.getValue(MedicalInfo::class.java)
+                        medicalInfo = info
+                    } else {
+                        Toast.makeText(context, "No medical data found for this ID", Toast.LENGTH_LONG).show()
+                    }
+                    isLoading = false
+                }.addOnFailureListener {
+                    Toast.makeText(context, "Failed to fetch data", Toast.LENGTH_SHORT).show()
+                    isLoading = false
+                }
+            } catch (e: Exception) {
+                isLoading = false
+            }
+        }
+    }
+
     if (showScanner) {
 
         QRCodeScannerScreen(
