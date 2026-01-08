@@ -256,37 +256,35 @@ fun Responderhome(
                     "1. Scan patient QR to fetch details.\n2. Verify identity before treatment.\n3. Data is fetched from secure server.",
                     fontSize = 16.sp, color = Color.DarkGray
                 )
-
             }
-            Column(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-                    .background(
-                        color = Color(0xFFF0FFF4),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .border(
-                        width = 1.dp,
-                        color = Color(0xFFFFCDD2),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(
-                    text = "Authorized Personnel Only",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF880E4F), textAlign = TextAlign.Center
-                )
-                Spacer(modifier = modifier.size(8.dp))
-                Text(
-                    "This information is confidential and protected by medical privacy laws.",
-                    fontSize = 11.sp
+        }
+    }
+}
 
-                )
-            }
+
+@Composable
+fun MedicalDataCard(info: MedicalInfo) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "PATIENT DETAILS",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFFE50914),
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 8.dp),
+                thickness = 1.dp,
+                color = Color.LightGray
+            )
 
         }
     }
