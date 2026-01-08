@@ -223,14 +223,20 @@ fun Responderhome(
                 // --- 🔥 MEDICAL DATA CARD (Jab Scan Ho Jaye) ---
                 MedicalDataCard(info = medicalInfo!!)
 
-            scannedResult?.let {
-                Text(
-                    text = "Scanned Result: $it",
-                    modifier = Modifier.padding(16.dp),
-                    fontSize = 16.sp,
-                    color = Color.Black
-                )
+                // Scan Another Button
+                Button(
+                    onClick = {
+                        medicalInfo = null
+                        scannedUID = null
+                    },
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00C853))
+                ) {
+                    Text("Scan Another Patient")
+                }
             }
+
+            // --- INSTRUCTIONS ---
             Column(
                 modifier = Modifier
                     .padding(16.dp)
