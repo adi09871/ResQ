@@ -54,7 +54,7 @@ fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel:
             is Authstate.Error -> {
                 Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
             }
-            is Authstate.Autheticated -> {
+            is Authstate.Authenticated -> {
                 Toast.makeText(context, "Account created successfully!", Toast.LENGTH_SHORT).show()
                 navController.navigate("login") {
                     popUpTo("create_account") { inclusive = true }

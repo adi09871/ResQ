@@ -1,37 +1,17 @@
 package com.example.resq.responderloginscreen
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -40,13 +20,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
-import com.example.resq.Authstate
 import com.example.resq.R
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
-fun Responderloginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
+fun Responderloginscreen(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    authviewmodel: AuthViewModel
+) {
+    val context = LocalContext.current
+
 
     LaunchedEffect(authviewmodel.loginSuccess.value) {
         if (authviewmodel.loginSuccess.value) {
@@ -59,12 +43,11 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
     }
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(color = Color(0xFFE9FDF1))
     ) {
 
-        // Top Row (Back button + Title)
         Row(modifier = Modifier.fillMaxWidth()) {
             IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
@@ -92,11 +75,7 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
             )
         }
 
-        // Image below Row
-        Column(
-            modifier = Modifier.fillMaxWidth()
-
-        ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
             Image(
                 painter = painterResource(R.drawable.logo),
                 contentDescription = "App Logo",
@@ -113,29 +92,27 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
             Text(
-                text = "Emergency Personal only  ", fontWeight = FontWeight.Bold,
+                text = "Emergency Personnel Only", fontWeight = FontWeight.Bold,
                 modifier = Modifier.align(Alignment.CenterHorizontally), fontSize = 15.sp
             )
-            Text("(Access Restricted to authorized personal only  )", fontWeight = FontWeight.Bold,
+            Text(
+                "(Access Restricted to authorized personnel only)", fontWeight = FontWeight.Bold,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 fontSize = 10.sp,
                 color = Color.Black
             )
             Spacer(modifier = Modifier.height(10.dp))
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
-                    .background(
-                        Color.White,
-                        shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
-                    )
+                    .background(Color.White, shape = RoundedCornerShape(12.dp))
                     .padding(16.dp)
                     .align(Alignment.CenterHorizontally)
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start
                 ) {
-
                     Text(
                         text = "Sign In",
                         fontSize = 20.sp,
@@ -146,40 +123,28 @@ fun Responderloginscreen(modifier: Modifier,navController: NavController,authvie
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Email Label
-                    Text(
-                        text = "Responder ID", fontWeight = FontWeight.Bold
-                    )
-                    var reounderID by remember { mutableStateOf("") }
+                    Text(text = "Responder ID", fontWeight = FontWeight.Bold)
+                    var responderID by remember { mutableStateOf("") }
                     OutlinedTextField(
-                        value = reounderID,
-                        onValueChange = { reounderID = it },
-                        placeholder = { Text(" Enter your unique responder ID", fontSize = 14.sp) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .defaultMinSize(minHeight = 40.dp),
+                        value = responderID,
+                        onValueChange = { responderID = it },
+                        placeholder = { Text("Enter ID (admin)", fontSize = 14.sp) },
+                        modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 40.dp),
                         textStyle = TextStyle(fontSize = 14.sp)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Password Label
-                    Text(
-                        text = "Password", fontWeight = FontWeight.Bold
-                    )
-
+                    Text(text = "Password", fontWeight = FontWeight.Bold)
                     var password by remember { mutableStateOf("") }
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
-                        placeholder = { Text("Enter your password", fontSize = 14.sp) },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .defaultMinSize(minHeight = 40.dp),
+                        placeholder = { Text("Enter Password (1234)", fontSize = 14.sp) },
+                        modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 40.dp),
                         textStyle = TextStyle(fontSize = 14.sp)
                     )
 
-                    // Observe auth state
-                    val authState by authviewmodel.authstate.observeAsState()
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     Button(
                         onClick = {

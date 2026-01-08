@@ -11,20 +11,20 @@ class AuthViewModel : ViewModel() {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val _authstate = MutableLiveData<Authstate>()
     val authstate: LiveData<Authstate> = _authstate
+
+    // Responder Login Variables
     var loggedInResponderID = mutableStateOf("")
-
-
+    var loginSuccess = mutableStateOf(false)
 
     init {
         checkAuthStatus()
     }
 
-
     fun checkAuthStatus() {
         if (auth.currentUser == null) {
             _authstate.value = Authstate.Unauthenticated
         } else {
-            _authstate.value = Authstate.Autheticated
+            _authstate.value = Authstate.Authenticated
         }
     }
 
@@ -33,15 +33,29 @@ class AuthViewModel : ViewModel() {
             _authstate.value = Authstate.Error("Email or password can't be empty")
             return
         }
-
         _authstate.value = Authstate.Loading
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    _authstate.value = Authstate.Autheticated
+                    _authstate.value = Authstate.Authenticated
                 } else {
-                    _authstate.value =
-                        Authstate.Error(task.exception?.message ?: "Login failed")
+                    _authstate.value = Authstate.Error(task.exception?.message ?: "Login failed")
+                }
+            }
+    }
+
+    fun signup(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
+            _authstate.value = Authstate.Error("Email or password can't be empty")
+            return
+        }
+        _authstate.value = Authstate.Loading
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _authstate.value = Authstate.Authenticated
+                } else {
+                    _authstate.value = Authstate.Error(task.exception?.message ?: "Signup failed")
                 }
             }
     }
@@ -49,31 +63,26 @@ class AuthViewModel : ViewModel() {
     fun signout() {
         auth.signOut()
         _authstate.value = Authstate.Unauthenticated
+        loggedInResponderID.value = ""
+        loginSuccess.value = false
     }
-    fun signup(email: String, password: String) {
-        if (email.isEmpty() || password.isEmpty()) {
-            _authstate.value = Authstate.Error("Email or password can't be empty")
-            return
-        }
 
-        _authstate.value = Authstate.Loading
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _authstate.value = Authstate.Autheticated // Note: Matches your typo in the sealed class
-                } else {
-                    _authstate.value = Authstate.Error(task.exception?.message ?: "Signup failed")
-                }
-            }
+    // 🔥 HARDCODED LOGIN LOGIC 🔥
+    fun accessSystem(id: String, pass: String) {
+        // Yahan maine ID="admin" aur Password="1234" fix kar diya hai
+        if (id == "admin" && pass == "1234") {
+            loginSuccess.value = true
+            loggedInResponderID.value = id
+        } else {
+            loginSuccess.value = false
+            _authstate.value = Authstate.Error("Invalid Responder ID or Password")
+        }
     }
 }
 
 sealed class Authstate {
-    object Autheticated : Authstate()
-    object  Unauthenticated : Authstate()
-    object  Loading : Authstate()
-    data class  Error (val message: String) : Authstate()
-
-
-
+    object Authenticated : Authstate()
+    object Unauthenticated : Authstate()
+    object Loading : Authstate()
+    data class Error(val message: String) : Authstate()
 }

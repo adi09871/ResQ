@@ -1,35 +1,24 @@
 package com.example.resq.responderhome
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -38,20 +27,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
+import com.example.resq.MedicalInfo
+import com.example.resq.R
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.delay
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Responderhome(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     navController: NavController,
     authviewmodel: AuthViewModel,
 ) {
     val responderID = authviewmodel.loggedInResponderID.value
     var currentTime by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
-    // ✅ QR Scanner states
-    var scannedResult by remember { mutableStateOf<String?>(null) }
+    var scannedUID by remember { mutableStateOf<String?>(null) }
     var showScanner by remember { mutableStateOf(false) }
 
     var medicalInfo by remember { mutableStateOf<MedicalInfo?>(null) }
@@ -94,31 +86,30 @@ fun Responderhome(
     }
 
     if (showScanner) {
-
         QRCodeScannerScreen(
             onResult = { value ->
-                scannedResult = value
-                showScanner = false
+                scannedUID = value // UID mil gaya
+                showScanner = false // Scanner band karo
             }
         )
     } else {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = Color(0xFFE9FDF1))
+                .verticalScroll(rememberScrollState()) // Allow scrolling
         ) {
+            // --- HEADER ---
             Row(
                 modifier = Modifier.padding(top = 22.dp, start = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(com.example.resq.R.drawable.logo),
-                    modifier = modifier.size(30.dp),
+                    painter = painterResource(R.drawable.logo),
+                    modifier = Modifier.size(30.dp),
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(Color(0xFF008C3D))
                 )
-
                 Text(
                     text = "ResQ ",
                     fontSize = 24.sp,
@@ -126,10 +117,7 @@ fun Responderhome(
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
-
-                IconButton(
-                    onClick = { /* TODO: action */ }
-                ) {
+                IconButton(onClick = { /* Logout Logic */ }) {
                     Icon(
                         painter = painterResource(id = R.drawable.exitlogo),
                         contentDescription = "Exit",
@@ -138,19 +126,13 @@ fun Responderhome(
                 }
             }
 
+
             Column(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .background(
-                        color = Color(0xFFE9FDF1),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .border(
-                        width = 1.dp,
-                        color = Color(0xFF00C853),
-                        shape = RoundedCornerShape(12.dp)
-                    )
+                    .background(color = Color(0xFFE9FDF1), shape = RoundedCornerShape(12.dp))
+                    .border(width = 1.dp, color = Color(0xFF00C853), shape = RoundedCornerShape(12.dp))
                     .padding(16.dp)
             ) {
                 Text(text = "Welcome, $responderID", fontSize = 18.sp, fontWeight = FontWeight.Medium)
@@ -160,7 +142,7 @@ fun Responderhome(
 
 
             if (medicalInfo == null) {
-             
+
                 Text(
                     "Emergency Scanner",
                     modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -175,7 +157,7 @@ fun Responderhome(
                         .height(160.dp)
                         .background(color = Color(0xFF00C853), shape = RoundedCornerShape(12.dp))
                         .clickable {
-                            // Reset previous data before scanning new
+
                             medicalInfo = null
                             scannedUID = null
                         }
@@ -197,10 +179,9 @@ fun Responderhome(
                     }
                 }
             } else {
-                // --- 🔥 MEDICAL DATA CARD (Jab Scan Ho Jaye) ---
-                MedicalDataCard(info = medicalInfo!!)
+                 MedicalDataCard(info = medicalInfo!!)
 
-                // Scan Another Button
+
                 Button(
                     onClick = {
                         medicalInfo = null
@@ -213,22 +194,16 @@ fun Responderhome(
                 }
             }
 
-            // --- INSTRUCTIONS ---
+
             Column(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .background(
-                        color = Color(0xFFF0FFF4),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .border(
-                        width = 1.dp,
-                        color = Color(0xFF00C853),
-                        shape = RoundedCornerShape(12.dp)
-                    )
+                    .background(color = Color(0xFFF0FFF4), shape = RoundedCornerShape(12.dp))
+                    .border(width = 1.dp, color = Color(0xFF00C853), shape = RoundedCornerShape(12.dp))
                     .padding(16.dp)
-            ){
+            ) {
+                Text("Instructions:", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 Text(
                     "1. Scan patient QR to fetch details.\n2. Verify identity before treatment.\n3. Data is fetched from secure server.",
                     fontSize = 16.sp, color = Color.DarkGray

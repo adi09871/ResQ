@@ -17,10 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner // 👈 IMPORT ADDED
+import androidx.compose.ui.platform.LocalLifecycleOwner // 👈 IMPORT IMPORTANT HAI
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 
@@ -31,7 +30,7 @@ fun QRCodeScannerScreen(
     onResult: (String) -> Unit
 ) {
     val context = LocalContext.current
-    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current // 👈 FIX: Sahi Lifecycle Owner yahan se milega
+    val lifecycleOwner = LocalLifecycleOwner.current // ✅ CORRECT LIFECYCLE OWNER
 
     var hasPermission by remember {
         mutableStateOf(
@@ -95,7 +94,7 @@ fun QRCodeScannerScreen(
 
                     try {
                         cameraProvider.unbindAll()
-                   
+
                         cameraProvider.bindToLifecycle(
                             lifecycleOwner,
                             CameraSelector.DEFAULT_BACK_CAMERA,

@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="ResQ">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-01-07T11:47:19.153205700Z">
+        <DropdownSelection timestamp="2026-01-08T12:29:46.143231800Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="PhysicalDevice" identifier="serial=10BFAA0ZLC00607" />
