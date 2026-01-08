@@ -54,6 +54,9 @@ fun Responderhome(
     var scannedResult by remember { mutableStateOf<String?>(null) }
     var showScanner by remember { mutableStateOf(false) }
 
+    var medicalInfo by remember { mutableStateOf<MedicalInfo?>(null) }
+    var isLoading by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         while (true) {
             val now = java.text.SimpleDateFormat("hh:mm:ss a", java.util.Locale.getDefault())
