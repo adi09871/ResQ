@@ -100,7 +100,7 @@ fun QRCodeScannerScreen(
 
                     try {
                         cameraProvider.unbindAll()
-                        // 👇 FIX: 'context as LifecycleOwner' ki jagah 'lifecycleOwner' use kiya
+                   
                         cameraProvider.bindToLifecycle(
                             lifecycleOwner,
                             CameraSelector.DEFAULT_BACK_CAMERA,
