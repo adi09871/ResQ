@@ -286,6 +286,15 @@ fun MedicalDataCard(info: MedicalInfo) {
                 color = Color.LightGray
             )
 
+            InfoRow("Name", info.fullName)
+            InfoRow("Blood Group", info.bloodGroup)
+            InfoRow("Allergies", info.allergies)
+            InfoRow("Emergency Contact", info.contact1)
+            InfoRow("Secondary Contact", info.contact2)
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Medical Notes:", fontWeight = FontWeight.Bold, color = Color.Gray)
+            Text(info.medicalNotes.ifEmpty { "None" }, fontSize = 16.sp)
         }
     }
 }
