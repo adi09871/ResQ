@@ -85,4 +85,5 @@ sealed class Authstate {
     object Unauthenticated : Authstate()
     object Loading : Authstate()
     data class Error(val message: String) : Authstate()
+    object Idle : Authstate()
 }

@@ -55,11 +55,25 @@ fun Loginscreen(
     authviewmodel: AuthViewModel
 ) {
     val authState by authviewmodel.authstate.observeAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(authState) {
-        if (authState is Authstate.Unauthenticated) {
-            navController.navigate("login") {
-                popUpTo(0) }}}// Pura stack clear
+       when (authState){
+       is Authstate.Authenticated -> {
+           navController.navigate("medicaldetails") {
+               popUpTo("login") { inclusive = true }
+           }
+    }
+           is Authstate.Error -> {
+               Toast.makeText(
+                   context,
+                   (authState as Authstate.Error).message,
+                   Toast.LENGTH_SHORT
+               ).show()
+           }
+           else -> {}
+       }}
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -145,7 +159,6 @@ fun Loginscreen(
                 Button(
                     onClick = {
                         authviewmodel.login(email, password)
-                        navController.navigate("medicaldetails")
                               },
                     modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
