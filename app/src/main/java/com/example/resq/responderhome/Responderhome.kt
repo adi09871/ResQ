@@ -131,8 +131,8 @@ fun Responderhome(
                     onClick = { /* TODO: action */ }
                 ) {
                     Icon(
-                        painter = painterResource(id = com.example.resq.R.drawable.exitlogo),
-                        contentDescription = "Responder Logo",
+                        painter = painterResource(id = R.drawable.exitlogo),
+                        contentDescription = "Exit",
                         tint = Color(0xFF008C3D),
                     )
                 }
