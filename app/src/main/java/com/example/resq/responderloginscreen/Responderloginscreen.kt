@@ -48,6 +48,15 @@ import com.example.resq.R
 @Composable
 fun Responderloginscreen(modifier: Modifier,navController: NavController,authviewmodel: AuthViewModel) {
 
+    LaunchedEffect(authviewmodel.loginSuccess.value) {
+        if (authviewmodel.loginSuccess.value) {
+
+            navController.navigate("responderhome") {
+                popUpTo("responderlogin") { inclusive = true }
+            }
+            authviewmodel.loginSuccess.value = false
+        }
+    }
 
     Column(
         modifier = modifier
