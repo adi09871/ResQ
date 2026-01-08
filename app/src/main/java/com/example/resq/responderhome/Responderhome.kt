@@ -299,5 +299,13 @@ fun MedicalDataCard(info: MedicalInfo) {
     }
 }
 
-
-
+@Composable
+fun InfoRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(text = "$label:", fontWeight = FontWeight.Bold, color = Color.Gray)
+        Text(text = value.ifEmpty { "N/A" }, fontWeight = FontWeight.Medium, color = Color.Black)
+    }
+}
