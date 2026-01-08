@@ -191,37 +191,37 @@ fun Responderhome(
             )
 
 
-            Box(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-                    .height(160.dp)
-                    .background(
-                        color = Color(0xFF00C853),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .clickable { showScanner = true }
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                Box(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
+                        .height(160.dp)
+                        .background(color = Color(0xFF00C853), shape = RoundedCornerShape(12.dp))
+                        .clickable {
+                            // Reset previous data before scanning new
+                            medicalInfo = null
+                            scannedUID = null
+                        }
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource(id = com.example.resq.R.drawable.blankqrimage),
-                        contentDescription = "qrcode",
-                        modifier = Modifier.size(50.dp)
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Scan QR Code",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        if (isLoading) {
+                            CircularProgressIndicator(color = Color.White)
+                            Text("Fetching Data...", color = Color.White)
+                        } else {
+                            Image(
+                                painter = painterResource(id = R.drawable.blankqrimage),
+                                contentDescription = "QR",
+                                modifier = Modifier.size(50.dp)
+                            )
+                            Text("Scan QR Code", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        }
+                    }
                 }
-            }
+            } else {
+                // --- 🔥 MEDICAL DATA CARD (Jab Scan Ho Jaye) ---
+                MedicalDataCard(info = medicalInfo!!)
 
             scannedResult?.let {
                 Text(
