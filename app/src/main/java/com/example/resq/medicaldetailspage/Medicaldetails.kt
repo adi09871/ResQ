@@ -176,12 +176,7 @@ fun Medicaldetails(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // emrgency contact 1 Label
-                Text(
-                    text = "Emergency Contact 1", fontWeight = FontWeight.Bold
-                )
 
-                    // Contact 2
                     Text("Emergency Contact 2", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = conatct2, onValueChange = { conatct2 = it },
