@@ -124,57 +124,50 @@ fun Medicaldetails(
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // full name  Label
-                Text(
-                    text = "Full name ", fontWeight = FontWeight.Bold
-                )
+                    // Form Fields Variables
+                    var fullname by remember { mutableStateOf("") }
+                    var blodgroup by remember { mutableStateOf("") }
+                    var allergies by remember { mutableStateOf("") }
+                    var conatct1 by remember { mutableStateOf("") }
+                    var conatct2 by remember { mutableStateOf("") } // Fixed: contact2 alag variable
+                    var medicalnotes by remember { mutableStateOf("") }
+                    var message by remember { mutableStateOf("") }
 
-                var fullname by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value =fullname,
-                    onValueChange = { fullname = it },
-                    placeholder = { Text("Enter your full name ", fontSize = 14.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
-                    textStyle = TextStyle(fontSize = 14.sp)
-                )
+                    // --- FIELDS UI ---
+                    // Name
+                    Text("Full Name *", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = fullname, onValueChange = { fullname = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Required") }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
-                Spacer(modifier = Modifier.height(16.dp))
+                    // Blood Group
+                    Text("Blood Group *", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = blodgroup, onValueChange = { blodgroup = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Required") }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
-                // blood group  Label
-                Text(
-                    text = "Blood Group ", fontWeight = FontWeight.Bold
-                )
+                    // Allergies
+                    Text("Allergies", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = allergies, onValueChange = { allergies = it },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
-                var blodgroup by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value = blodgroup,
-                    onValueChange = {blodgroup = it },
-                    placeholder = { Text(" Enter your blood group ", fontSize = 14.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 30.dp),
-                    textStyle = TextStyle(fontSize = 14.sp)
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-
-            //allergies label
-                Text(
-                    text = "Allergies ", fontWeight = FontWeight.Bold
-                )
-
-                var allergies by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value = allergies  ,
-                    onValueChange = { allergies  = it },
-                    placeholder = { Text(" List any allergies (medical,food,etc.)", fontSize = 14.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
-                    textStyle = TextStyle(fontSize = 14.sp)
-                )
-                Spacer(modifier = Modifier.height(16.dp))
+                    // Contact 1
+                    Text("Emergency Contact 1 *", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = conatct1, onValueChange = { conatct1 = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Required") }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
 
                     Text("Emergency Contact 2", fontWeight = FontWeight.Bold)
