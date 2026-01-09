@@ -181,22 +181,13 @@ fun Medicaldetails(
                     text = "Emergency Contact 1", fontWeight = FontWeight.Bold
                 )
 
-                var conatct1 by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value = conatct1,
-                    onValueChange = { conatct1 = it },
-                    placeholder = { Text("Name and phone number", fontSize = 14.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
-                    textStyle = TextStyle(fontSize = 14.sp)
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // emergency contact 2 Label
-                Text(
-                    text = "Emergency Contact 2 ", fontWeight = FontWeight.Bold
-                )
+                    // Contact 2
+                    Text("Emergency Contact 2", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = conatct2, onValueChange = { conatct2 = it },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
 
                 var email by remember { mutableStateOf("") }
                 OutlinedTextField(
