@@ -206,7 +206,8 @@ fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel:
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFE50914),
                         contentColor = Color.White
-                    )
+                    ),
+                    shape = RoundedCornerShape(8.dp)
                 ) {
                     Text("Create Account")
                 }
