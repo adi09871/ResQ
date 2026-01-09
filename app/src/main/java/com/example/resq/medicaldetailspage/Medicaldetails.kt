@@ -49,6 +49,7 @@ fun Medicaldetails(
     navController: NavController,
     authviewmodel: AuthViewModel
 ) {
+    val context = LocalContext.current
     val uid = FirebaseAuth.getInstance().currentUser?.uid
     val dbRef = FirebaseDatabase.getInstance().getReference("medical_info").child(uid ?: "")
 
