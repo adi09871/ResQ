@@ -53,6 +53,7 @@ fun Medicaldetails(
     val dbRef = FirebaseDatabase.getInstance().getReference("medical_info").child(uid ?: "")
 
     var showForm by remember { mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf(true) }
 
     // 🔑 Decide screen here
     LaunchedEffect(Unit) {
