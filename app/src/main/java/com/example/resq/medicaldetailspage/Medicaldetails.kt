@@ -184,17 +184,14 @@ fun Medicaldetails(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
-                var email by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value = email   ,
-                    onValueChange = { email  = it },
-                    placeholder = { Text("Name and phone number", fontSize = 14.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
-                    textStyle = TextStyle(fontSize = 14.sp)
-                )
-                Spacer(modifier = Modifier.height(16.dp))
+
+                    Text("Medical Notes", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = medicalnotes, onValueChange = { medicalnotes = it },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     Button(
                         onClick = {
