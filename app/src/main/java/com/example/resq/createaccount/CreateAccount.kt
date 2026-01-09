@@ -211,5 +211,7 @@ fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel:
                 ) {
                     Text("Create Account")
                 }
+            }
         }
-    }}}}
+    }
+}
