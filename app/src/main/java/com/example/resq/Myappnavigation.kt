@@ -34,7 +34,8 @@ fun MyAppNavigation(
             Loginscreen(
                 modifier = Modifier,
                 navController = navController,
-                authviewmodel = authViewModel
+                authviewmodel = authViewModel,
+                modifier = Modifier
             )
         }
         composable("signup") {
