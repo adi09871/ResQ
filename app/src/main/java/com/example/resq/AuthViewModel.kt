@@ -17,17 +17,12 @@ class AuthViewModel : ViewModel() {
     var loginSuccess = mutableStateOf(false)
 
     init {
-        checkAuthStatus()
+
+        auth.signOut()
+        _authstate.value = Authstate.Unauthenticated
     }
 
-    fun checkAuthStatus() {
-        if (auth.currentUser == null) {
-            _authstate.value = Authstate.Unauthenticated
-        } else {
-            _authstate.value = Authstate.Authenticated
-        }
-    }
-
+    // Login Function
     fun login(email: String, password: String) {
         if (email.isEmpty() || password.isEmpty()) {
             _authstate.value = Authstate.Error("Email or password can't be empty")
@@ -67,9 +62,7 @@ class AuthViewModel : ViewModel() {
         loginSuccess.value = false
     }
 
-    // 🔥 HARDCODED LOGIN LOGIC 🔥
     fun accessSystem(id: String, pass: String) {
-        // Yahan maine ID="admin" aur Password="1234" fix kar diya hai
         if (id == "admin" && pass == "1234") {
             loginSuccess.value = true
             loggedInResponderID.value = id
@@ -85,5 +78,4 @@ sealed class Authstate {
     object Unauthenticated : Authstate()
     object Loading : Authstate()
     data class Error(val message: String) : Authstate()
-    object Idle : Authstate()
 }

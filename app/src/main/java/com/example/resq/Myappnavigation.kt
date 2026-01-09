@@ -32,7 +32,6 @@ fun MyAppNavigation(
     ) {
         composable("login") {
             Loginscreen(
-                modifier = Modifier,
                 navController = navController,
                 authviewmodel = authViewModel,
                 modifier = Modifier

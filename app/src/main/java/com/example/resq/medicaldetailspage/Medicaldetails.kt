@@ -1,13 +1,12 @@
 package com.example.resq.medicaldetailspage
 
-
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -28,7 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,10 +42,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 @OptIn(ExperimentalMaterial3Api::class)
-
 @Composable
 fun Medicaldetails(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     navController: NavController,
     authviewmodel: AuthViewModel
 ) {
@@ -56,7 +55,6 @@ fun Medicaldetails(
     var showForm by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(true) }
 
-    // 🔑 Decide screen here
     LaunchedEffect(Unit) {
         if (uid == null) {
             navController.navigate("login") {
@@ -67,12 +65,11 @@ fun Medicaldetails(
 
         dbRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                // ✅ Medical data already present → skip form
                 navController.navigate("qrdownloadpage") {
                     popUpTo("medicaldetails") { inclusive = true }
                 }
             } else {
-                // ❌ No data → show form
+                isLoading = false
                 showForm = true
             }
         }.addOnFailureListener {
@@ -88,17 +85,16 @@ fun Medicaldetails(
     }
 
     if (isLoading) {
-        // Loading Screen jab tak check ho raha hai
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator(color = Color(0xFFE50914))
             Spacer(modifier = Modifier.height(8.dp))
             Text("Checking Profile...", modifier = Modifier.padding(top = 40.dp))
         }
-        return // Niche ka code run nahi hoga jab tak loading hai
+        return
     }
 
     if (showForm) {
-        // --- YAHAN SE TERA PURANA FORM UI SHURU HOTA HAI ---
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -136,9 +132,8 @@ fun Medicaldetails(
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
-                    // Form Fields Variables
                     var fullname by remember { mutableStateOf("") }
                     var blodgroup by remember { mutableStateOf("") }
                     var allergies by remember { mutableStateOf("") }
@@ -225,7 +220,7 @@ fun Medicaldetails(
                                 saveRef.setValue(info)
                                     .addOnSuccessListener {
                                         message = "✅ Saved! Redirecting..."
-                                        
+
                                         navController.navigate("qrdownloadpage") {
                                             popUpTo("medicaldetails") { inclusive = true }
                                         }

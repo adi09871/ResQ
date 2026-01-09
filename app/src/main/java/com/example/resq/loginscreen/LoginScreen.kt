@@ -3,32 +3,13 @@ package com.example.resq.loginscreen
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,33 +27,33 @@ import com.example.resq.Authstate
 import com.example.resq.R
 import com.example.resq.ui.theme.pink1
 
-
-
 @Composable
 fun Loginscreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     navController: NavController,
     authviewmodel: AuthViewModel
 ) {
     val authState by authviewmodel.authstate.observeAsState()
     val context = LocalContext.current
 
+    // ✅ DIRECT CHECK: isLoading variable ki zaroorat nahi, authState se hi check karlo
+    val isLoading = authState is Authstate.Loading
+
+    // Navigation & Error Handling Effect
     LaunchedEffect(authState) {
-       when (authState){
-       is Authstate.Authenticated -> {
-           navController.navigate("medicaldetails") {
-               popUpTo("login") { inclusive = true }
-           }
+        when (authState) {
+            is Authstate.Authenticated -> {
+                navController.navigate("medicaldetails") {
+                    popUpTo("login") { inclusive = true }
+                }
+            }
+            is Authstate.Error -> {
+                val errorMsg = (authState as Authstate.Error).message
+                Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+            }
+            else -> Unit
+        }
     }
-           is Authstate.Error -> {
-               Toast.makeText(
-                   context,
-                   (authState as Authstate.Error).message,
-                   Toast.LENGTH_SHORT
-               ).show()
-           }
-           else -> {}
-       }}
 
     Column(
         modifier = modifier
@@ -81,14 +62,12 @@ fun Loginscreen(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-
-        ) {
+    ) {
 
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "App Logo",
             modifier = modifier.size(72.dp)
-
         )
         Text(
             text = "ResQ", fontWeight = FontWeight.Bold,
@@ -101,7 +80,7 @@ fun Loginscreen(
         )
 
         Spacer(modifier = modifier.height(10.dp))
-        // Box h ye login wala
+
         Box(
             modifier = modifier
                 .fillMaxWidth(0.9f)
@@ -122,68 +101,66 @@ fun Loginscreen(
 
                 Spacer(modifier = modifier.height(20.dp))
 
-                // Email Label
-                Text(
-                    text = "Email", fontWeight = FontWeight.Bold
-                )
-
+                Text(text = "Email", fontWeight = FontWeight.Bold)
                 var email by remember { mutableStateOf("") }
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
                     placeholder = { Text("Enter your email", fontSize = 14.sp) },
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
+                    modifier = modifier.fillMaxWidth(),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
 
                 Spacer(modifier = modifier.height(16.dp))
 
-                // Password Label
-                Text(
-                    text = "Password", fontWeight = FontWeight.Bold
-                )
-
+                Text(text = "Password", fontWeight = FontWeight.Bold)
                 var password by remember { mutableStateOf("") }
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
                     placeholder = { Text("Enter your password", fontSize = 14.sp) },
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
+                    modifier = modifier.fillMaxWidth(),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
+
+                Spacer(modifier = modifier.height(16.dp))
 
                 Button(
                     onClick = {
                         authviewmodel.login(email, password)
-                              },
+                    },
                     modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         contentColor = Color.White, containerColor = Color(0xFFE50914)
-                    )
+                    ),
+                    enabled = !isLoading // Loading ke waqt button disable
                 ) {
-                    Text(text = "Login")
+                    if (isLoading) {
+                        CircularProgressIndicator(
+                            color = Color.White,
+                            modifier = Modifier.size(24.dp),
+                            strokeWidth = 2.dp
+                        )
+                    } else {
+                        Text(text = "Login")
+                    }
                 }
             }
         }
+
+        // ... Baaki code same (Signup & Responder Button) ...
         Spacer(modifier = modifier.height(10.dp))
-
-
         Text(text = "Don't have acoount?")
         TextButton(
-            onClick = {
-                navController.navigate("signup")
-            },
+            onClick = { navController.navigate("signup") },
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
         ){
-        Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))}
+            Text(text = "Sign up ", fontSize = 16.sp, color = Color(0xFFE50914))
+        }
 
         Button(
-            onClick = {navController.navigate("responderlogin")},
+            onClick = { navController.navigate("responderlogin") },
             modifier = modifier.fillMaxWidth(0.6f),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
@@ -198,9 +175,5 @@ fun Loginscreen(
             Spacer(modifier = modifier.width(4.dp))
             Text(text = "Authorized Responder")
         }
-
-
     }
 }
-
-
