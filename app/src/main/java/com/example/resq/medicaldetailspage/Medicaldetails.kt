@@ -218,9 +218,9 @@ fun Medicaldetails(
                                     medicalNotes = medicalnotes
                                 )
 
-                            val dbRef = FirebaseDatabase.getInstance()
-                                .getReference("medical_info")
-                                .child(uid)
+                                val saveRef = FirebaseDatabase.getInstance()
+                                    .getReference("medical_info")
+                                    .child(currentUid)
 
                                 saveRef.setValue(info)
                                     .addOnSuccessListener {
