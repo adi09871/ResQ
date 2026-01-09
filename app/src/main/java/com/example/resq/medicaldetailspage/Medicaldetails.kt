@@ -50,9 +50,7 @@ fun Medicaldetails(
     authviewmodel: AuthViewModel
 ) {
     val uid = FirebaseAuth.getInstance().currentUser?.uid
-    val dbRef = FirebaseDatabase.getInstance()
-        .getReference("medical_info")
-        .child(uid ?: "")
+    val dbRef = FirebaseDatabase.getInstance().getReference("medical_info").child(uid ?: "")
 
     var showForm by remember { mutableStateOf(false) }
 
