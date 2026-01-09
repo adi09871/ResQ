@@ -194,7 +194,12 @@ fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel:
                 fun signup(email: String, password: String) {
                 Button(
                     onClick = {
-                        authviewmodel.signup(email, password)
+
+                        if (email.isNotEmpty() && password.isNotEmpty()) {
+                            authviewmodel.signup(email, password)
+                        } else {
+                            Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                        }
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
