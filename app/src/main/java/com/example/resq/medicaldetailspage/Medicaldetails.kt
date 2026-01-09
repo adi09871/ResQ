@@ -196,36 +196,23 @@ fun Medicaldetails(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // MEDICAL NOTES ka Label
-                Text(
-                    text = "Medical notes  ", fontWeight = FontWeight.Bold
-                )
+                    Button(
+                        onClick = {
+                            if (fullname.isEmpty() || blodgroup.isEmpty() || conatct1.isEmpty()) {
+                                message = "❌ Please fill all required fields (*)"
+                                return@Button
+                            }
 
-                var medicalnotes  by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value = medicalnotes    ,
-                    onValueChange = { medicalnotes = it },
-                    placeholder = { Text("Important Medical Condition,medication,etc", fontSize = 14.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .defaultMinSize(minHeight = 40.dp),
-                    textStyle = TextStyle(fontSize = 14.sp)
-                )
-                var message by remember { mutableStateOf("") }
-
-
-                Button(
-                    onClick = {
-                        val uid = FirebaseAuth.getInstance().currentUser?.uid
-                        if (uid != null) {
-                            val MedicalInfo = MedicalInfo(
-                                fullName = fullname,
-                                bloodGroup = blodgroup,
-                                allergies = allergies,
-                                contact1 = conatct1,
-                                contact2 = conatct1,
-                                medicalNotes = medicalnotes
-                            )
+                            val currentUid = FirebaseAuth.getInstance().currentUser?.uid
+                            if (currentUid != null) {
+                                val info = MedicalInfo(
+                                    fullName = fullname,
+                                    bloodGroup = blodgroup,
+                                    allergies = allergies,
+                                    contact1 = conatct1,
+                                    contact2 = conatct2, // Corrected variable
+                                    medicalNotes = medicalnotes
+                                )
 
                             val dbRef = FirebaseDatabase.getInstance()
                                 .getReference("medical_info")
