@@ -58,7 +58,12 @@ fun Medicaldetails(
 
     // 🔑 Decide screen here
     LaunchedEffect(Unit) {
-        if (uid == null) return@LaunchedEffect
+        if (uid == null) {
+            navController.navigate("login") {
+                popUpTo("medicaldetails") { inclusive = true }
+            }
+            return@LaunchedEffect
+        }
 
         dbRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
