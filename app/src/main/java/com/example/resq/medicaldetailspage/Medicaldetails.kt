@@ -82,9 +82,9 @@ fun Medicaldetails(
         }
     }
 
-    if (!showForm) {
-        Text("Loading medical information...")
-        return
+
+    BackHandler(enabled = showForm) {
+        Toast.makeText(context, "Please complete your profile first!", Toast.LENGTH_SHORT).show()
     }
 
     if (isLoading) {
