@@ -80,28 +80,37 @@ fun Medicaldetails(
         return
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = pink1)
-
-    ) {
-
-        // 🔙 Top Row (Back Button + Title)
-        Row(modifier = Modifier.fillMaxWidth()) {
-
-            Spacer(modifier = Modifier.width(50.dp))
-            Text(
-                text = "ResQ Responder",
-                color = Color(0xFFE50914),
-                modifier = Modifier
-                    .padding(top = 12.dp)
-                    .align(Alignment.CenterVertically),
-                fontSize = 18.sp,
-                fontFamily = FontFamily.Monospace,
-                fontWeight = FontWeight.Bold
-            )
+    if (isLoading) {
+        // Loading Screen jab tak check ho raha hai
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(color = Color(0xFFE50914))
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Checking Profile...", modifier = Modifier.padding(top = 40.dp))
         }
+        return // Niche ka code run nahi hoga jab tak loading hai
+    }
+
+    if (showForm) {
+        // --- YAHAN SE TERA PURANA FORM UI SHURU HOTA HAI ---
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = pink1)
+        ) {
+            // Header Row
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Spacer(modifier = Modifier.width(50.dp))
+                Text(
+                    text = "ResQ Details", // Title short kiya space ke liye
+                    color = Color(0xFFE50914),
+                    modifier = Modifier
+                        .padding(top = 12.dp)
+                        .align(Alignment.CenterVertically),
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
             Box(
                 modifier = Modifier.fillMaxWidth(),
