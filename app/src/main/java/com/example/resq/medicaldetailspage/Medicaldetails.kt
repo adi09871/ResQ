@@ -76,6 +76,8 @@ fun Medicaldetails(
                 showForm = true
             }
         }.addOnFailureListener {
+
+            isLoading = false
             showForm = true
         }
     }
