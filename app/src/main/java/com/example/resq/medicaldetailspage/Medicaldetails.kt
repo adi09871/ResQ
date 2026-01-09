@@ -231,31 +231,24 @@ fun Medicaldetails(
                                 .getReference("medical_info")
                                 .child(uid)
 
-                            // Ye run hoga bina IO thread ke, Firebase already async hai
-                            dbRef.setValue(MedicalInfo)
-                                .addOnSuccessListener {
-                                    message = "✅ Data saved successfully!"
-                                    // Navigate after saving
-                                    navController.navigate("qrdownloadpage") {
-                                        popUpTo("medicaldetails") { inclusive = true }
+                                saveRef.setValue(info)
+                                    .addOnSuccessListener {
+                                        message = "✅ Saved! Redirecting..."
+                                        
+                                        navController.navigate("qrdownloadpage") {
+                                            popUpTo("medicaldetails") { inclusive = true }
+                                        }
                                     }
-                                }
-                                .addOnFailureListener {
-                                    message = "❌ Failed to save: ${it.message}"
-                                }
-                        } else {
-                            message = "User not logged in!"
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFE50914),
-                        contentColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(8.dp)
-                ) {
-                    Text(text = "Save Medical Information")
-                }
+                                    .addOnFailureListener {
+                                        message = "❌ Error: ${it.message}"
+                                    }
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE50914))
+                    ) {
+                        Text("Save & Generate QR")
+                    }
 
                 if (message.isNotEmpty()) {
                     Spacer(Modifier.height(12.dp))
