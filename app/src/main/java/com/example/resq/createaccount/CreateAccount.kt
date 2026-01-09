@@ -190,8 +190,9 @@ fun CreateAccount(modifier: Modifier,navController: NavController,authviewmodel:
                         .defaultMinSize(minHeight = 40.dp),
                     textStyle = TextStyle(fontSize = 14.sp)
                 )
-                @Composable
-                fun signup(email: String, password: String) {
+                Spacer(modifier = Modifier.height(24.dp))
+
+    
                 Button(
                     onClick = {
 
