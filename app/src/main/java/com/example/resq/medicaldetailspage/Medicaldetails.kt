@@ -241,11 +241,11 @@ fun Medicaldetails(
                         Text("Save & Generate QR")
                     }
 
-                if (message.isNotEmpty()) {
-                    Spacer(Modifier.height(12.dp))
-                    Text(text = message, color = Color.Black, fontSize = 14.sp)
+                    if (message.isNotEmpty()) {
+                        Text(text = message, color = Color.Red, modifier = Modifier.padding(top = 8.dp))
+                    }
                 }
             }
         }
-            }
-        }
+    }
+}
