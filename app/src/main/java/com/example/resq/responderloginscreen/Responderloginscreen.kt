@@ -151,10 +151,8 @@ fun Responderloginscreen(
                             if (responderID.isEmpty() || password.isEmpty()) {
                                 Toast.makeText(context, "Please enter ID and Password", Toast.LENGTH_SHORT).show()
                             } else {
-                                // ✅ FIX: Calling the correct function
                                 authviewmodel.accessSystem(responderID, password)
 
-                                // Feedback agar login fail ho gaya (ViewModel check karega)
                                 if (!authviewmodel.loginSuccess.value && responderID.isNotEmpty()) {
                                     Toast.makeText(context, "Wrong ID or Password", Toast.LENGTH_SHORT).show()
                                 }

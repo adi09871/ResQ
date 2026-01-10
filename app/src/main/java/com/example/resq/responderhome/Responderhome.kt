@@ -88,10 +88,10 @@ fun Responderhome(
     if (showScanner) {
         QRCodeScannerScreen(
             onResult = { value ->
-                scannedUID = value // UID mil gaya
-                showScanner = false // Scanner band karo
-            }
-        )
+                Toast.makeText(context, "Scanned ID: $value", Toast.LENGTH_LONG).show()
+
+                scannedUID = value
+            } )
     } else {
         Column(
             modifier = Modifier
@@ -99,7 +99,6 @@ fun Responderhome(
                 .background(color = Color(0xFFE9FDF1))
                 .verticalScroll(rememberScrollState()) // Allow scrolling
         ) {
-            // --- HEADER ---
             Row(
                 modifier = Modifier.padding(top = 22.dp, start = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -157,7 +156,6 @@ fun Responderhome(
                         .height(160.dp)
                         .background(color = Color(0xFF00C853), shape = RoundedCornerShape(12.dp))
                         .clickable {
-
                             showScanner = true
 
 
