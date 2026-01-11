@@ -89,7 +89,7 @@ fun Responderhome(
         QRCodeScannerScreen(
             onResult = { value ->
                 Toast.makeText(context, "Scanned ID: $value", Toast.LENGTH_LONG).show()
-
+                showScanner = false
                 scannedUID = value
             } )
     } else {
