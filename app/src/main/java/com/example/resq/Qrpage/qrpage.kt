@@ -93,6 +93,19 @@ fun Qrdownloadpage(modifier: Modifier = Modifier,
                 contentDescription = "Profile",
                 modifier = Modifier.size(40.dp).align(Alignment.TopEnd)
             )
+             if (showProfileDialog) {
+                 UserProfiledialog(
+                     authviewmodel = authviewmodel,
+                     onDismiss = { showProfileDialog = false },
+                     onSignOut = {
+                         authviewmodel.signout()
+                         navController.navigate("login") {
+                             popUpTo(0)
+                         }
+                     }
+                 )
+
+             }
         }
 
         Text(
