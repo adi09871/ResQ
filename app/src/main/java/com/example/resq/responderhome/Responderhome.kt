@@ -64,7 +64,7 @@ fun Responderhome(
             isLoading = true
             try {
                 // Database Path: users -> {UID} -> (Data)
-                val dbRef = FirebaseDatabase.getInstance().getReference("users").child(scannedUID!!)
+                val dbRef = FirebaseDatabase.getInstance().getReference("medical_info").child(scannedUID!!)
 
                 dbRef.get().addOnSuccessListener { snapshot ->
                     if (snapshot.exists()) {
