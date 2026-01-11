@@ -43,7 +43,6 @@ fun QRCodeScannerScreen(
     val context = LocalContext.current
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
 
-    // Check current permission status
     var hasPermission by remember {
         mutableStateOf(
             ContextCompat.checkSelfPermission(
@@ -53,7 +52,6 @@ fun QRCodeScannerScreen(
         )
     }
 
-    // Launcher to request permission
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { granted ->
@@ -63,7 +61,6 @@ fun QRCodeScannerScreen(
         }
     }
 
-    // Automatically ask for permission when screen opens (first time only)
     LaunchedEffect(Unit) {
         if (!hasPermission) {
             permissionLauncher.launch(Manifest.permission.CAMERA)
@@ -76,7 +73,7 @@ fun QRCodeScannerScreen(
         verticalArrangement = Arrangement.Center
     ) {
         if (hasPermission) {
-            // Camera Preview Section
+
             AndroidView(
                 factory = { ctx ->
                     val previewView = PreviewView(ctx).apply {
@@ -129,7 +126,7 @@ fun QRCodeScannerScreen(
                             }
 
                         try {
-                            cameraProvider.unbindAll() // Purane bindings hatana zaroori hai
+                            cameraProvider.unbindAll()
                             cameraProvider.bindToLifecycle(
                                 lifecycleOwner,
                                 CameraSelector.DEFAULT_BACK_CAMERA,
@@ -156,7 +153,6 @@ fun QRCodeScannerScreen(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = {
-                // Settings kholne ka logic agar permanent deny ho gaya ho
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
                     data = Uri.fromParts("package", context.packageName, null)
                 }
