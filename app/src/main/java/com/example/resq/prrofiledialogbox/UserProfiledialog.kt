@@ -33,6 +33,39 @@ fun UserProfiledialog(onDismiss: () -> Unit, authviewmodel: AuthViewModel
     val currentUser = FirebaseAuth.getInstance().currentUser
     var medicalInfo by remember { mutableStateOf<MedicalInfo>(null) }
     var isLoading by remember { mutableStateOf(true) }
+    LaunchedEffect(Unit) {
+        currentUser?.uid?.let { uid ->
+            val dbRef = FirebaseDatabase.getInstance().getReference("medical_info").child(uid)
+            dbRef.get().addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    medicalInfo = snapshot.getValue(MedicalInfo::class.java)
+                }
+                isLoading = false
+            }.addOnFailureListener {
+                isLoading = false
+            }
+        } ?: run { isLoading = false }
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "My Profile",
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                color = Color(0xFF008C3D) // ResQ Green Theme
+            )
+        },
+        text = {
+            if (isLoading) {
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(color = Color(0xFFE50914))
+                }
+            } else {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    // Email (Auth से)
+                    ProfileRow(label = "Email", value = currentUser?.email ?: "N/A")
 
 
 }
