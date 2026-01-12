@@ -68,4 +68,37 @@ fun UserProfiledialog(onDismiss: () -> Unit, authviewmodel: AuthViewModel
                     ProfileRow(label = "Email", value = currentUser?.email ?: "N/A")
 
 
+                    ProfileRow(label = "Name", value = medicalInfo?.fullName ?: "N/A")
+
+                    ProfileRow(label = "Phone", value = medicalInfo?.contact1 ?: "N/A")
+
+
+                    ProfileRow(label = "Blood Group", value = medicalInfo?.bloodGroup ?: "N/A")
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = onSignOut,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE50914)) // Red for Sign Out
+            ) {
+                Text("Sign Out")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Close", color = Color.Gray)
+            }
+        },
+        containerColor = Color.White,
+        shape = RoundedCornerShape(16.dp)
+    )
+}
+
+@Composable
+fun ProfileRow(label: String, value: String) {
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+        Text(text = label, fontSize = 12.sp, color = Color.Gray, fontWeight = FontWeight.SemiBold)
+        Text(text = value, fontSize = 16.sp, color = Color.Black, fontWeight = FontWeight.Medium)
+    }
 }
