@@ -13,6 +13,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,9 +22,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.resq.AuthViewModel
 import com.example.resq.MedicalInfo
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 @Composable
 fun UserProfiledialog(onDismiss: () -> Unit, authviewmodel: AuthViewModel
@@ -31,7 +36,7 @@ fun UserProfiledialog(onDismiss: () -> Unit, authviewmodel: AuthViewModel
 
     val context = LocalContext.current
     val currentUser = FirebaseAuth.getInstance().currentUser
-    var medicalInfo by remember { mutableStateOf<MedicalInfo>(null) }
+    var medicalInfo by remember { mutableStateOf<MedicalInfo?>(null) }
     var isLoading by remember { mutableStateOf(true) }
     LaunchedEffect(Unit) {
         currentUser?.uid?.let { uid ->
@@ -54,7 +59,7 @@ fun UserProfiledialog(onDismiss: () -> Unit, authviewmodel: AuthViewModel
                 text = "My Profile",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-                color = Color(0xFF008C3D) // ResQ Green Theme
+                color = Color(0xFF008C3D)
             )
         },
         text = {
@@ -64,7 +69,6 @@ fun UserProfiledialog(onDismiss: () -> Unit, authviewmodel: AuthViewModel
                 }
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    // Email (Auth से)
                     ProfileRow(label = "Email", value = currentUser?.email ?: "N/A")
 
 
@@ -102,3 +106,5 @@ fun ProfileRow(label: String, value: String) {
         Text(text = value, fontSize = 16.sp, color = Color.Black, fontWeight = FontWeight.Medium)
     }
 }
+
+

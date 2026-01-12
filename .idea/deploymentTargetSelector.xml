@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="ResQ">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-01-11T15:33:03.250306Z">
+        <DropdownSelection timestamp="2026-01-12T18:13:27.488934500Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\adit1\.android\avd\Medium_Phone.avd" />
