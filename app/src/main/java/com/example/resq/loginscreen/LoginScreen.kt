@@ -127,7 +127,7 @@ fun Loginscreen(
 
                 Button(
                     onClick = {
-                        authviewmodel.login(email, password)
+                        authviewmodel.login(email.trim(), password.trim())
                     },
                     modifier = modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
