@@ -36,10 +36,8 @@ fun Loginscreen(
     val authState by authviewmodel.authstate.observeAsState()
     val context = LocalContext.current
 
-    // ✅ DIRECT CHECK: isLoading variable ki zaroorat nahi, authState se hi check karlo
     val isLoading = authState is Authstate.Loading
 
-    // Navigation & Error Handling Effect
     LaunchedEffect(authState) {
         when (authState) {
             is Authstate.Authenticated -> {
@@ -149,7 +147,6 @@ fun Loginscreen(
             }
         }
 
-        // ... Baaki code same (Signup & Responder Button) ...
         Spacer(modifier = modifier.height(10.dp))
         Text(text = "Don't have acoount?")
         TextButton(

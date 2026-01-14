@@ -63,12 +63,10 @@ fun Responderhome(
         if (scannedUID != null) {
             isLoading = true
             try {
-                // Database Path: users -> {UID} -> (Data)
                 val dbRef = FirebaseDatabase.getInstance().getReference("medical_info").child(scannedUID!!)
 
                 dbRef.get().addOnSuccessListener { snapshot ->
                     if (snapshot.exists()) {
-                        // Data ko MedicalInfo class mein convert karein
                         val info = snapshot.getValue(MedicalInfo::class.java)
                         medicalInfo = info
                     } else {
