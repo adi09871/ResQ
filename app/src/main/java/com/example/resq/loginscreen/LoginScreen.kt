@@ -134,7 +134,7 @@ fun Loginscreen(
                     colors = ButtonDefaults.buttonColors(
                         contentColor = Color.White, containerColor = Color(0xFFE50914)
                     ),
-                    enabled = !isLoading // Loading ke waqt button disable
+                    enabled = !isLoading
                 ) {
                     if (isLoading) {
                         CircularProgressIndicator(
