@@ -148,7 +148,10 @@ fun Responderloginscreen(
 
                     Button(
                         onClick = {
-                            if (responderID.isEmpty() || password.isEmpty()) {
+                            val cleanID = responderID.trim()
+                            val cleanPass = password.trim()
+
+                            if (cleanID.isEmpty() || cleanPass.isEmpty()) {
                                 Toast.makeText(context, "Please enter ID and Password", Toast.LENGTH_SHORT).show()
                             } else {
                                 authviewmodel.accessSystem(responderID, password)
