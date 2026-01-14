@@ -159,8 +159,7 @@ fun Responderloginscreen(
                                 if (!authviewmodel.loginSuccess.value && cleanID.isNotEmpty()) {
                                     Toast.makeText(context, "Wrong ID or Password", Toast.LENGTH_SHORT).show()
                                 }
-                            }
-                        },
+                            }},
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
