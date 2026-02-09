@@ -77,51 +77,56 @@ fun Qrdownloadpage(modifier: Modifier = Modifier,
 
     val qrBitmap = remember(uid) { generateQrCode(uid) }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(color = pink1) //
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    painter = painterResource(id = R.drawable.logo), //
-                    contentDescription = "Logo",
-                    tint = Color(0xFFE50914),
-                    modifier = Modifier.size(28.dp)
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = "ResQ",
-                    fontSize = 24.sp,
-                    fontFamily = FontFamily.Monospace,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFFE50914)
-                )
-            }
-            Icon(
-                painter = painterResource(id = R.drawable.profile),
-                contentDescription = "Profile",
-                modifier = Modifier.size(40.dp).align(Alignment.TopEnd)
-                    .clickable{ showProfileDialog = true }
-            )
-             if (showProfileDialog) {
-                 UserProfiledialog(
-                     authviewmodel = authviewmodel,
-                     onDismiss = { showProfileDialog = false },
-                     onSignOut = {
-                         authviewmodel.signout()
-                         navController.navigate("login"){
-                      popUpTo(0) }
-                     }
-                 )
+    Box(modifier = modifier.fillMaxSize()) {
 
-             }
-        }
+        // --- EXISTING CONTENT (Inside Column) ---
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = pink1)
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "Logo",
+                        tint = Color(0xFFE50914),
+                        modifier = Modifier.size(28.dp)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "ResQ",
+                        fontSize = 24.sp,
+                        fontFamily = FontFamily.Monospace,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFE50914)
+                    )
+                }
+                Icon(
+                    painter = painterResource(id = R.drawable.profile),
+                    contentDescription = "Profile",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .align(Alignment.TopEnd)
+                        .clickable { showProfileDialog = true }
+                )
+                if (showProfileDialog) {
+                    UserProfiledialog(
+                        authviewmodel = authviewmodel,
+                        onDismiss = { showProfileDialog = false },
+                        onSignOut = {
+                            authviewmodel.signout()
+                            navController.navigate("login") {
+                                popUpTo(0)
+                            }
+                        }
+                    )
+                }
+            }
 
         Text(
             text = "Your Emergency QR Code",
