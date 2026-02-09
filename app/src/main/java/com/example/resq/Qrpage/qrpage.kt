@@ -67,9 +67,106 @@ fun generateQrCode(data: String): Bitmap?
 }
 
 @Composable
-fun Qrdownloadpage(modifier: Modifier = Modifier,
-           navController: NavController,
-           authviewmodel: AuthViewModel
+fun ResQChatBotDialog(onDismiss: () -> Unit) {
+    var message by remember { mutableStateOf("") }
+    // Dummy Logic for "AI"
+    val chatHistory = remember { mutableStateListOf(
+        ChatMessage("Hello! ResQ Assistant here 🤖.\nNeed help with 'Ambulance', 'Police' or 'First Aid'?", false)
+    )}
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(500.dp)
+            .padding(16.dp),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(8.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            // Header
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("ResQ Assistant", fontWeight = FontWeight.Bold, color = Color(0xFFE50914), fontSize = 18.sp)
+                // Replaced Icon with Text Button to avoid "Unresolved Reference: Icons"
+                TextButton(onClick = onDismiss) {
+                    Text("✕", fontSize = 20.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
+                }
+            }
+
+            // Replaced Divider with HorizontalDivider (Material 3 Fix)
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+            // Chat List
+            LazyColumn(modifier = Modifier.weight(1f)) {
+                items(chatHistory) { msg ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp),
+                        horizontalArrangement = if (msg.isUser) Arrangement.End else Arrangement.Start
+                    ) {
+                        Surface(
+                            color = if (msg.isUser) Color(0xFFE50914) else Color(0xFFF0F0F0),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.widthIn(max = 250.dp)
+                        ) {
+                            Text(
+                                text = msg.text,
+                                modifier = Modifier.padding(10.dp),
+                                color = if (msg.isUser) Color.White else Color.Black
+                            )
+                        }
+                    }
+                }
+            }
+
+            // Input Area
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                OutlinedTextField(
+                    value = message,
+                    onValueChange = { message = it },
+                    modifier = Modifier.weight(1f),
+                    placeholder = { Text("Type here...") },
+                    singleLine = true
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Button(
+                    onClick = {
+                        if (message.isNotEmpty()) {
+                            chatHistory.add(ChatMessage(message, true))
+                            // Simple Logic (No Dependency)
+                            val lowerMsg = message.lowercase()
+                            val reply = when {
+                                lowerMsg.contains("ambulance") -> "🚨 Calling Ambulance (102)... Location Shared."
+                                lowerMsg.contains("police") -> "🚓 Calling Police (100)... Report Sent."
+                                lowerMsg.contains("fire") -> "🚒 Calling Fire Dept (101)..."
+                                lowerMsg.contains("first aid") -> "🩹 CPR Guide: Push hard & fast in center of chest."
+                                else -> "I can help with: Ambulance, Police, Fire, First Aid."
+                            }
+                            chatHistory.add(ChatMessage(reply, false))
+                            message = ""
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE50914)),
+                    contentPadding = PaddingValues(horizontal = 16.dp)
+                ) {
+                    Text("Send")
+                }
+            }
+        }
+    }
+}
+
+// --- 4. MAIN SCREEN (Updated with FAB) ---
+@Composable
+fun Qrdownloadpage(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    authviewmodel: AuthViewModel
 ) {
     var showProfileDialog by remember { mutableStateOf(false ) }
 
