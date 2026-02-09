@@ -233,23 +233,41 @@ fun Qrdownloadpage(
             fontSize = 22.sp
         )
 
-        Box( modifier = Modifier
-            .padding(18.dp)
-            .fillMaxWidth()
-            .height(350.dp)
-            .border(width = 2.dp, color = Color(0xFF008C3D), shape = RoundedCornerShape(16.dp)) //
-            .background(color = Color.White, shape = RoundedCornerShape(16.dp)),
-            contentAlignment = Alignment.Center
-        ) {
-            if (qrBitmap != null) {
+            Box(
+                modifier = Modifier
+                    .padding(18.dp)
+                    .fillMaxWidth()
+                    .height(350.dp)
+                    .border(width = 2.dp, color = Color(0xFF008C3D), shape = RoundedCornerShape(16.dp))
+                    .background(color = Color.White, shape = RoundedCornerShape(16.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                if (qrBitmap != null) {
+                    Image(
+                        bitmap = qrBitmap.asImageBitmap(),
+                        contentDescription = "QR Code",
+                        modifier = Modifier.size(250.dp)
+                    )
+                } else {
+                    Text("Generating QR...")
+                }
+            }
+        }
 
-                Image(
-                    bitmap = qrBitmap.asImageBitmap(),
-                    contentDescription = "QR Code",
-                    modifier = Modifier.size(250.dp)
-                )
-            } else {
-                Text("Generating QR...")
+        FloatingActionButton(
+            onClick = { showChatDialog = true },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(24.dp),
+            containerColor = Color(0xFFE50914),
+            contentColor = Color.White
+        ) {
+            Text("🤖", fontSize = 24.sp)
+        }
+
+        if (showChatDialog) {
+            Dialog(onDismissRequest = { showChatDialog = false }) {
+                ResQChatBotDialog(onDismiss = { showChatDialog = false })
             }
         }
     }
