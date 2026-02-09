@@ -39,6 +39,7 @@ import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
 import com.example.resq.prrofiledialogbox.UserProfiledialog
 
+data class ChatMessage(val text: String, val isUser: Boolean)
 
 fun generateQrCode(data: String): Bitmap?
 {
