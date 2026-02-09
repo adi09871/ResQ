@@ -225,13 +225,13 @@ fun Qrdownloadpage(
                 }
             }
 
-        Text(
-            text = "Your Emergency QR Code",
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth(),
-            fontWeight = FontWeight.Bold,
-            fontSize = 22.sp
-        )
+            Text(
+                text = "Your Emergency QR Code",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp
+            )
 
             Box(
                 modifier = Modifier
