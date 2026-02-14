@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -36,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
-import com.example.resq.MedicalInfo
 import com.example.resq.ui.theme.pink1
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -55,6 +56,7 @@ fun Medicaldetails(
     var showForm by remember { mutableStateOf(false) }
     var isLoading by remember { mutableStateOf(true) }
 
+    // Check if profile exists
     LaunchedEffect(Unit) {
         if (uid == null) {
             navController.navigate("login") {
@@ -65,20 +67,20 @@ fun Medicaldetails(
 
         dbRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
+                // Profile exists, go to QR page directly
                 navController.navigate("qrdownloadpage") {
                     popUpTo("medicaldetails") { inclusive = true }
                 }
             } else {
+                // Profile missing, show form
                 isLoading = false
                 showForm = true
             }
         }.addOnFailureListener {
-
             isLoading = false
             showForm = true
         }
     }
-
 
     BackHandler(enabled = showForm) {
         Toast.makeText(context, "Please complete your profile first!", Toast.LENGTH_SHORT).show()
@@ -94,17 +96,17 @@ fun Medicaldetails(
     }
 
     if (showForm) {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = pink1)
+                .verticalScroll(rememberScrollState()) // Allow scrolling for new fields
         ) {
             // Header Row
             Row(modifier = Modifier.fillMaxWidth()) {
                 Spacer(modifier = Modifier.width(50.dp))
                 Text(
-                    text = "ResQ Details", // Title short kiya space ke liye
+                    text = "ResQ Details",
                     color = Color(0xFFE50914),
                     modifier = Modifier
                         .padding(top = 12.dp)
@@ -116,7 +118,9 @@ fun Medicaldetails(
             }
 
             Box(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Column(
@@ -126,7 +130,7 @@ fun Medicaldetails(
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = "Mandatory Medical Info",
+                        text = "Complete Your Profile",
                         fontSize = 20.sp, fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
@@ -134,16 +138,24 @@ fun Medicaldetails(
 
                     Spacer(modifier = Modifier.height(20.dp))
 
+                    // --- Variables ---
                     var fullname by remember { mutableStateOf("") }
                     var blodgroup by remember { mutableStateOf("") }
                     var allergies by remember { mutableStateOf("") }
                     var conatct1 by remember { mutableStateOf("") }
-                    var conatct2 by remember { mutableStateOf("") } // Fixed: contact2 alag variable
+                    var conatct2 by remember { mutableStateOf("") }
                     var medicalnotes by remember { mutableStateOf("") }
+
+                    // NEW INSURANCE VARIABLES
+                    var insuranceProvider by remember { mutableStateOf("") }
+                    var policyNumber by remember { mutableStateOf("") }
+
                     var message by remember { mutableStateOf("") }
 
-                    // --- FIELDS UI ---
-                    // Name
+                    // --- BASIC INFO SECTION ---
+                    Text("Basic Information", color = Color.Gray, fontSize = 14.sp)
+                    Spacer(modifier = Modifier.height(8.dp))
+
                     Text("Full Name *", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = fullname, onValueChange = { fullname = it },
@@ -152,49 +164,72 @@ fun Medicaldetails(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    // Blood Group
                     Text("Blood Group *", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = blodgroup, onValueChange = { blodgroup = it },
                         modifier = Modifier.fillMaxWidth(),
-                        placeholder = { Text("Required") }
+                        placeholder = { Text("e.g. O+, A-") }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    // Allergies
                     Text("Allergies", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = allergies, onValueChange = { allergies = it },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("e.g. Peanuts, Penicillin") }
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // --- INSURANCE SECTION (NEW) ---
+                    Text("Insurance & Reports (Optional)", color = Color.Blue, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text("Insurance Provider", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = insuranceProvider, onValueChange = { insuranceProvider = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("e.g. Star Health, LIC") }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    // Contact 1
+                    Text("Policy Number", fontWeight = FontWeight.Bold)
+                    OutlinedTextField(
+                        value = policyNumber, onValueChange = { policyNumber = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("e.g. 12345678") }
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // --- CONTACT SECTION ---
+                    Text("Emergency Contacts", color = Color.Gray, fontSize = 14.sp)
+                    Spacer(modifier = Modifier.height(8.dp))
+
                     Text("Emergency Contact 1 *", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = conatct1, onValueChange = { conatct1 = it },
                         modifier = Modifier.fillMaxWidth(),
-                        placeholder = { Text("Required") }
+                        placeholder = { Text("Primary Contact") }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-
 
                     Text("Emergency Contact 2", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = conatct2, onValueChange = { conatct2 = it },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Secondary Contact") }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-
 
                     Text("Medical Notes", fontWeight = FontWeight.Bold)
                     OutlinedTextField(
                         value = medicalnotes, onValueChange = { medicalnotes = it },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = { Text("Any other critical info...") }
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
 
+                    // --- SAVE BUTTON ---
                     Button(
                         onClick = {
                             if (fullname.isEmpty() || blodgroup.isEmpty() || conatct1.isEmpty()) {
@@ -202,32 +237,25 @@ fun Medicaldetails(
                                 return@Button
                             }
 
-                            val currentUid = FirebaseAuth.getInstance().currentUser?.uid
-                            if (currentUid != null) {
-                                val info = MedicalInfo(
-                                    fullName = fullname,
-                                    bloodGroup = blodgroup,
-                                    allergies = allergies,
-                                    contact1 = conatct1,
-                                    contact2 = conatct2, // Corrected variable
-                                    medicalNotes = medicalnotes
-                                )
-
-                                val saveRef = FirebaseDatabase.getInstance()
-                                    .getReference("medical_info")
-                                    .child(currentUid)
-
-                                saveRef.setValue(info)
-                                    .addOnSuccessListener {
-                                        message = "✅ Saved! Redirecting..."
-
-                                        navController.navigate("qrdownloadpage") {
-                                            popUpTo("medicaldetails") { inclusive = true }
-                                        }
+                            // Using AuthViewModel to save data
+                            authviewmodel.saveMedicalInfo(
+                                fullName = fullname,
+                                bloodGroup = blodgroup,
+                                allergies = allergies,
+                                contact1 = conatct1,
+                                contact2 = conatct2,
+                                medicalNotes = medicalnotes,
+                                insuranceProvider = insuranceProvider,
+                                policyNumber = policyNumber
+                            ) { success, msg ->
+                                if (success) {
+                                    message = "✅ $msg"
+                                    navController.navigate("qrdownloadpage") {
+                                        popUpTo("medicaldetails") { inclusive = true }
                                     }
-                                    .addOnFailureListener {
-                                        message = "❌ Error: ${it.message}"
-                                    }
+                                } else {
+                                    message = "❌ Error: $msg"
+                                }
                             }
                         },
                         modifier = Modifier.fillMaxWidth(),
@@ -237,7 +265,11 @@ fun Medicaldetails(
                     }
 
                     if (message.isNotEmpty()) {
-                        Text(text = message, color = Color.Red, modifier = Modifier.padding(top = 8.dp))
+                        Text(
+                            text = message,
+                            color = if(message.startsWith("✅")) Color.Green else Color.Red,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
                     }
                 }
             }

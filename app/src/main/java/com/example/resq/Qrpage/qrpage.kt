@@ -1,6 +1,7 @@
-package com.example.resq.medicaldetailspage
+package com.example.resq.Qrpage
 
 import android.graphics.Bitmap
+import android.graphics.Color as AndroidColor
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -9,40 +10,36 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.Dialog
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.set
 import androidx.navigation.NavController
 import com.example.resq.AuthViewModel
 import com.example.resq.R
+import com.example.resq.prrofiledialogbox.UserProfiledialog
 import com.example.resq.ui.theme.pink1
+import com.example.resq.utils.FileHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
-import android.graphics.Color as AndroidColor
-import androidx.core.graphics.createBitmap
-import androidx.core.graphics.set
-import com.example.resq.prrofiledialogbox.UserProfiledialog
+
 
 data class ChatMessage(val text: String, val isUser: Boolean)
 
-fun generateQrCode(data: String): Bitmap?
-{
+fun generateQrCode(data: String): Bitmap? {
     return try {
         val writer = QRCodeWriter()
         val bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 512, 512)
@@ -60,10 +57,11 @@ fun generateQrCode(data: String): Bitmap?
     }
 }
 
+
 @Composable
 fun ResQChatBotDialog(onDismiss: () -> Unit) {
     var message by remember { mutableStateOf("") }
-    // Dummy Logic for "AI"
+    // Use remember to keep chat history during recompositions
     val chatHistory = remember { mutableStateListOf(
         ChatMessage("Hello! ResQ Assistant here 🤖.\nNeed help with 'Ambulance', 'Police' or 'First Aid'?", false)
     )}
@@ -85,16 +83,13 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text("ResQ Assistant", fontWeight = FontWeight.Bold, color = Color(0xFFE50914), fontSize = 18.sp)
-                // Replaced Icon with Text Button to avoid "Unresolved Reference: Icons"
                 TextButton(onClick = onDismiss) {
                     Text("✕", fontSize = 20.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
                 }
             }
 
-            // Replaced Divider with HorizontalDivider (Material 3 Fix)
             HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
 
-            // Chat List
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(chatHistory) { msg ->
                     Row(
@@ -118,7 +113,6 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
                 }
             }
 
-            // Input Area
             Row(verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     value = message,
@@ -132,7 +126,7 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
                     onClick = {
                         if (message.isNotEmpty()) {
                             chatHistory.add(ChatMessage(message, true))
-                            // Simple Logic (No Dependency)
+                            // Simple Logic
                             val lowerMsg = message.lowercase()
                             val reply = when {
                                 lowerMsg.contains("ambulance") -> "🚨 Calling Ambulance (102)... Location Shared."
@@ -155,27 +149,28 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
     }
 }
 
-// --- 4. MAIN SCREEN (Updated with FAB) ---
+
 @Composable
 fun Qrdownloadpage(
     modifier: Modifier = Modifier,
     navController: NavController,
     authviewmodel: AuthViewModel
 ) {
-    var showProfileDialog by remember { mutableStateOf(false ) }
+    val context = LocalContext.current // Context for saving files
+    var showProfileDialog by remember { mutableStateOf(false) }
+    var showChatDialog by remember { mutableStateOf(false) }
 
     val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "No User"
-
     val qrBitmap = remember(uid) { generateQrCode(uid) }
 
     Box(modifier = modifier.fillMaxSize()) {
 
-        // --- EXISTING CONTENT (Inside Column) ---
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = pink1)
         ) {
+            // --- Header Section ---
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -219,6 +214,7 @@ fun Qrdownloadpage(
                 }
             }
 
+            // --- QR Code Section ---
             Text(
                 text = "Your Emergency QR Code",
                 textAlign = TextAlign.Center,
@@ -231,7 +227,7 @@ fun Qrdownloadpage(
                 modifier = Modifier
                     .padding(18.dp)
                     .fillMaxWidth()
-                    .height(350.dp)
+                    .height(300.dp) // Reduced height slightly to fit buttons
                     .border(width = 2.dp, color = Color(0xFF008C3D), shape = RoundedCornerShape(16.dp))
                     .background(color = Color.White, shape = RoundedCornerShape(16.dp)),
                 contentAlignment = Alignment.Center
@@ -246,8 +242,61 @@ fun Qrdownloadpage(
                     Text("Generating QR...")
                 }
             }
+
+            // --- NEW: Download & Print Buttons ---
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                // Button 1: Save Image
+                Button(
+                    onClick = {
+                        qrBitmap?.let {
+                            FileHelper.saveBitmapAsJpg(context, it, "ResQ_ID_$uid")
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007ACC)),
+                    shape = RoundedCornerShape(8.dp),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp)
+                ) {
+                    Text("Save Image")
+                }
+
+                // Button 2: Print PDF
+                Button(
+                    onClick = {
+                        qrBitmap?.let {
+                            val cardDetails = "ID: $uid\nType: Emergency Profile\nKeep this card in your wallet."
+                            FileHelper.saveBitmapAsPdf(context, it, cardDetails, "ResQ_Card_$uid")
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE50914)),
+                    shape = RoundedCornerShape(8.dp),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 8.dp)
+                ) {
+                    Text("Print Card")
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Use 'Print Card' for a physical wallet copy.",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+                color = Color.Gray,
+                fontSize = 12.sp
+            )
         }
 
+        // --- Chat FAB ---
         FloatingActionButton(
             onClick = { showChatDialog = true },
             modifier = Modifier

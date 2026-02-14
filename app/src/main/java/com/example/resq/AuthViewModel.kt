@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+
 
 class AuthViewModel : ViewModel() {
 
@@ -12,17 +14,14 @@ class AuthViewModel : ViewModel() {
     private val _authstate = MutableLiveData<Authstate>()
     val authstate: LiveData<Authstate> = _authstate
 
-    // Responder Login Variables
     var loggedInResponderID = mutableStateOf("")
     var loginSuccess = mutableStateOf(false)
 
     init {
-
         auth.signOut()
         _authstate.value = Authstate.Unauthenticated
     }
 
-    // Login Function
     fun login(email: String, password: String) {
         if (email.isEmpty() || password.isEmpty()) {
             _authstate.value = Authstate.Error("Email or password can't be empty")
@@ -70,6 +69,44 @@ class AuthViewModel : ViewModel() {
             loginSuccess.value = false
             _authstate.value = Authstate.Error("Invalid Responder ID or Password")
         }
+    }
+
+    fun saveMedicalInfo(
+        fullName: String,
+        bloodGroup: String,
+        allergies: String,
+        contact1: String,
+        contact2: String,
+        medicalNotes: String,
+        insuranceProvider: String,
+        policyNumber: String,
+        onResult: (Boolean, String) -> Unit
+    ) {
+        val uid = auth.currentUser?.uid
+        if (uid == null) {
+            onResult(false, "User not logged in")
+            return
+        }
+
+        val info = MedicalInfo(
+            fullName = fullName,
+            bloodGroup = bloodGroup,
+            allergies = allergies,
+            contact1 = contact1,
+            contact2 = contact2,
+            medicalNotes = medicalNotes,
+            insuranceProvider = insuranceProvider,
+            policyNumber = policyNumber
+        )
+
+        FirebaseDatabase.getInstance().getReference("medical_info").child(uid)
+            .setValue(info)
+            .addOnSuccessListener {
+                onResult(true, "Profile Saved Successfully")
+            }
+            .addOnFailureListener {
+                onResult(false, it.message ?: "Failed to save data")
+            }
     }
 }
 

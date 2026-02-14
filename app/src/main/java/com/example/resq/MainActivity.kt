@@ -31,11 +31,6 @@ authViewModel = authViewModel
             )
 
 
-            // Test Realtime Database
-            val database = Firebase.database.reference
-            database.child("test").setValue("Hello Firebase")
-                .addOnSuccessListener { Log.d("FirebaseCheck", "Database Connected!") }
-                .addOnFailureListener { Log.d("FirebaseCheck", "Database Failed") }
         }
     }
 }
