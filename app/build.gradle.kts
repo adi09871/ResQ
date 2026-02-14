@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.example.resq"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.resq"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -56,41 +56,33 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.runtime.livedata)
 
-
+    // Camera & ML Kit
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.extensions)
-
-
     implementation(libs.mlkit.barcode.scanning)
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.database)
-    implementation(libs.firebase.crashlytics.ktx)
+    // --- FIREBASE (CORRECT SETUP) ---
+    implementation(platform(libs.firebase.bom)) // BOM Versions sambhal lega
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-storage") // <-- Sahi Line (No Version)
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 
-    implementation(libs.zxing.core)
+    // QR Code
+    implementation("com.google.zxing:core:3.5.3")
     implementation(libs.zxing.embedded)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.ui.graphics)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.material3)
 
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(platform(libs.firebase.bom))
-
-    implementation("com.google.firebase:firebase-crashlytics-ktx:19.4.4")
-    implementation("com.google.firebase:firebase-analytics-ktx:22.1.2")
-    implementation("com.google.zxing:core:3.5.3")
-    implementation("com.google.firebase:firebase-storage-ktx")
 
 }

@@ -10,6 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.resq.Qrpage.Qrdownloadpage
+import com.example.resq.com.example.resq.UploadReportScreen
+import com.example.resq.com.example.resq.VitalsTrackerScreen
 import com.example.resq.createaccount.CreateAccount
 import com.example.resq.loginscreen.Loginscreen
 import com.example.resq.medicaldetailspage.Medicaldetails
@@ -86,6 +88,13 @@ fun MyAppNavigation(
                 navController = navController,
                 authviewmodel = authViewModel
             )
+        }
+        composable("upload_report") {
+          UploadReportScreen(navController, authViewModel)
+        }
+
+        composable("vitals_tracker") {
+            VitalsTrackerScreen(navController, authViewModel)
         }
     }
 }
