@@ -65,10 +65,10 @@ dependencies {
     implementation(libs.mlkit.barcode.scanning)
 
     // --- FIREBASE (CORRECT SETUP) ---
-    implementation(platform(libs.firebase.bom)) // BOM Versions sambhal lega
+    implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-storage") // <-- Sahi Line (No Version)
+    implementation("com.google.firebase:firebase-storage")
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
 
@@ -85,4 +85,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }

@@ -1,6 +1,4 @@
-package com.example.resq.com.example.resq
-
-
+package com.example.resq
 
 import android.net.Uri
 import android.widget.Toast
@@ -18,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.resq.AuthViewModel
 import com.example.resq.ui.theme.pink1
 
 @Composable
@@ -28,43 +25,40 @@ fun UploadReportScreen(navController: NavController, authViewModel: AuthViewMode
     var isUploading by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
-    // File Picker
     val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
         selectedFileUri = uri
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(pink1).padding(16.dp),
+        modifier = Modifier.fillMaxSize().background(Color(0xFFFFEbee)).padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Button(onClick = { navController.popBackStack() }, colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                Text("⬅ Back", color = Color.Black)
+            }
+        }
+        Spacer(modifier = Modifier.height(10.dp))
         Text("📂 Upload Medical Reports", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFFE50914))
         Spacer(modifier = Modifier.height(20.dp))
 
-        Card(modifier = Modifier.fillMaxWidth().padding(8.dp), colors = CardDefaults.cardColors(containerColor = Color.White)) {
+        Card(modifier = Modifier.fillMaxWidth().padding(8.dp), colors = CardDefaults.cardColors(containerColor = Color.White), elevation = CardDefaults.cardElevation(8.dp)) {
             Column(modifier = Modifier.padding(16.dp)) {
-                OutlinedTextField(
-                    value = reportName,
-                    onValueChange = { reportName = it },
-                    label = { Text("Report Name (e.g., X-Ray, Blood Test)") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(10.dp))
+                Text("1. Name your report", fontWeight = FontWeight.Bold)
+                OutlinedTextField(value = reportName, onValueChange = { reportName = it }, label = { Text("e.g., Blood Test, X-Ray") }, modifier = Modifier.fillMaxWidth())
+                Spacer(modifier = Modifier.height(16.dp))
 
-                Button(
-                    onClick = { launcher.launch("image/*") }, // Sirf Images filhal ke liye
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Gray)
-                ) {
-                    Text(if (selectedFileUri == null) "Select File" else "File Selected ✅")
+                Text("2. Select File (Image)", fontWeight = FontWeight.Bold)
+                Button(onClick = { launcher.launch("image/*") }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color.Gray)) {
+                    Text(if (selectedFileUri == null) "Choose Image" else "File Selected ✅")
                 }
-
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 Button(
                     onClick = {
                         if (reportName.isNotEmpty() && selectedFileUri != null) {
                             isUploading = true
-                            authViewModel.uploadReport(reportName, selectedFileUri!!) { success, msg ->
+                            authViewModel.uploadReport(reportName, selectedFileUri!!) { success: Boolean, msg: String ->
                                 isUploading = false
                                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                                 if (success) {
@@ -73,15 +67,20 @@ fun UploadReportScreen(navController: NavController, authViewModel: AuthViewMode
                                 }
                             }
                         } else {
-                            Toast.makeText(context, "Please select file & enter name", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Please enter name & select file", Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE50914)),
                     enabled = !isUploading
                 ) {
-                    if (isUploading) CircularProgressIndicator(color = Color.White, modifier = Modifier.size(20.dp))
-                    else Text("Upload Now")
+                    if (isUploading) {
+                        CircularProgressIndicator(color = Color.White, modifier = Modifier.size(20.dp))
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Uploading...")
+                    } else {
+                        Text("Upload Now")
+                    }
                 }
             }
         }
