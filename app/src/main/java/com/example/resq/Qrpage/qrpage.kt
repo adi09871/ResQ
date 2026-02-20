@@ -31,12 +31,12 @@ import com.example.resq.AuthViewModel
 import com.example.resq.R
 import com.example.resq.prrofiledialogbox.UserProfiledialog
 import com.example.resq.ui.theme.pink1
-import com.example.resq.utils.FileHelper // Ensure this import is correct
+import com.example.resq.utils.FileHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 
-// --- Helper Data & Function ---
+
 
 data class ChatMessage(val text: String, val isUser: Boolean)
 
@@ -58,7 +58,6 @@ fun generateQrCode(data: String): Bitmap? {
     }
 }
 
-// --- Chat Bot Dialog Component ---
 
 @Composable
 fun ResQChatBotDialog(onDismiss: () -> Unit) {
@@ -91,7 +90,6 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
 
             HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
 
-            // Chat List
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(chatHistory) { msg ->
                     Row(
@@ -115,7 +113,6 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
                 }
             }
 
-            // Input Area
             Row(verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     value = message,
@@ -151,7 +148,6 @@ fun ResQChatBotDialog(onDismiss: () -> Unit) {
     }
 }
 
-// --- Main Screen ---
 
 @Composable
 fun Qrdownloadpage(
@@ -174,7 +170,6 @@ fun Qrdownloadpage(
                 .fillMaxSize()
                 .background(color = pink1)
         ) {
-            // --- Header Section ---
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -283,7 +278,6 @@ fun Qrdownloadpage(
                 }
             }
 
-            // --- HEALTH TOOLS SECTION (Added Here Correctly) ---
             Spacer(modifier = Modifier.height(20.dp))
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
             Spacer(modifier = Modifier.height(10.dp))
@@ -321,9 +315,7 @@ fun Qrdownloadpage(
                 }
             }
 
-        } // End of Column
-
-        // --- Chat FAB (Floating Action Button) ---
+        }
         FloatingActionButton(
             onClick = { showChatDialog = true },
             modifier = Modifier
@@ -335,7 +327,6 @@ fun Qrdownloadpage(
             Text("🤖", fontSize = 24.sp)
         }
 
-        // --- Chat Dialog Overlay ---
         if (showChatDialog) {
             Dialog(onDismissRequest = { showChatDialog = false }) {
                 ResQChatBotDialog(onDismiss = { showChatDialog = false })
